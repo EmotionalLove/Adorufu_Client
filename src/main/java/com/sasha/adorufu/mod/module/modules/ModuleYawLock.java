@@ -19,9 +19,9 @@
 package com.sasha.adorufu.mod.module.modules;
 
 import com.sasha.adorufu.mod.AdorufuMod;
-import com.sasha.adorufu.mod.module.ModuleInfo;
 import com.sasha.adorufu.mod.module.AdorufuCategory;
 import com.sasha.adorufu.mod.module.AdorufuModule;
+import com.sasha.adorufu.mod.module.ModuleInfo;
 
 @ModuleInfo(description = "Lock your yaw to a specified angle")
 public class ModuleYawLock extends AdorufuModule {

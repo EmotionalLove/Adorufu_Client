@@ -21,9 +21,9 @@ package com.sasha.adorufu.mod.command.commands;
 import com.sasha.adorufu.mod.AdorufuMod;
 import com.sasha.adorufu.mod.misc.Manager;
 import com.sasha.simplecmdsys.SimpleCommand;
+import com.sasha.simplecmdsys.SimpleCommandInfo;
 
 import java.util.concurrent.atomic.AtomicBoolean;
-import com.sasha.simplecmdsys.SimpleCommandInfo;
 /**
  * Created by Sasha on 08/08/2018 at 9:26 PM
  **/

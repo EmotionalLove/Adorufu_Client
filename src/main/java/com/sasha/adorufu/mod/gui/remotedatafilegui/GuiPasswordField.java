@@ -20,8 +20,6 @@ package com.sasha.adorufu.mod.gui.remotedatafilegui;
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
-
-//import com.stringer.annotations.StringEncryption;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiPageButtonList;
@@ -32,6 +30,8 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ChatAllowedCharacters;
 import net.minecraft.util.math.MathHelper;
+
+//import com.stringer.annotations.StringEncryption;
 
 public class GuiPasswordField extends Gui
 {

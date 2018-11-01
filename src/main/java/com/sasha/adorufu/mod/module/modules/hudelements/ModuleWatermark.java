@@ -18,10 +18,10 @@
 
 package com.sasha.adorufu.mod.module.modules.hudelements;
 
-import com.sasha.adorufu.mod.module.ForcefulEnable;
-import com.sasha.adorufu.mod.module.ModuleInfo;
 import com.sasha.adorufu.mod.module.AdorufuCategory;
 import com.sasha.adorufu.mod.module.AdorufuModule;
+import com.sasha.adorufu.mod.module.ForcefulEnable;
+import com.sasha.adorufu.mod.module.ModuleInfo;
 
 /**
  * Created by Sasha on 08/08/2018 at 7:51 PM

@@ -18,9 +18,9 @@
 
 package com.sasha.adorufu.mod.module.modules;
 
-import com.sasha.adorufu.mod.module.ModuleInfo;
 import com.sasha.adorufu.mod.module.AdorufuCategory;
 import com.sasha.adorufu.mod.module.AdorufuModule;
+import com.sasha.adorufu.mod.module.ModuleInfo;
 
 @ModuleInfo(description = "Allow the tablist to fit more players")
 public class ModuleExtendedTablist extends AdorufuModule {

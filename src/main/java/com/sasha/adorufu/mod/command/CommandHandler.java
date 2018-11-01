@@ -18,9 +18,9 @@
 
 package com.sasha.adorufu.mod.command;
 
+import com.sasha.adorufu.mod.events.adorufu.AdorufuCommandEvent;
 import com.sasha.eventsys.SimpleEventHandler;
 import com.sasha.eventsys.SimpleListener;
-import com.sasha.adorufu.mod.events.adorufu.AdorufuCommandEvent;
 
 import static com.sasha.adorufu.mod.AdorufuMod.COMMAND_PROCESSOR;
 

@@ -18,9 +18,9 @@
 
 package com.sasha.adorufu.mod.misc;
 
+import com.sasha.adorufu.mod.events.client.ClientPacketRecieveEvent;
 import com.sasha.eventsys.SimpleEventHandler;
 import com.sasha.eventsys.SimpleListener;
-import com.sasha.adorufu.mod.events.client.ClientPacketRecieveEvent;
 import net.minecraft.network.play.server.SPacketTimeUpdate;
 import net.minecraft.util.math.MathHelper;
 

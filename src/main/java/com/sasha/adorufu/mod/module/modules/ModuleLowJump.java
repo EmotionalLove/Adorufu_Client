@@ -18,12 +18,12 @@
 
 package com.sasha.adorufu.mod.module.modules;
 
-import com.sasha.eventsys.SimpleEventHandler;
-import com.sasha.eventsys.SimpleListener;
 import com.sasha.adorufu.mod.events.playerclient.PlayerJumpEvent;
-import com.sasha.adorufu.mod.module.ModuleInfo;
 import com.sasha.adorufu.mod.module.AdorufuCategory;
 import com.sasha.adorufu.mod.module.AdorufuModule;
+import com.sasha.adorufu.mod.module.ModuleInfo;
+import com.sasha.eventsys.SimpleEventHandler;
+import com.sasha.eventsys.SimpleListener;
 
 @ModuleInfo(description = "Jump slightly lower than vanilla height so that you don't hit your head")
 public class ModuleLowJump extends AdorufuModule implements SimpleListener {

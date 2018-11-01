@@ -18,8 +18,8 @@
 
 package com.sasha.adorufu.mod.gui.clickgui.legacy.windows;
 
-import com.sasha.adorufu.mod.gui.clickgui.legacy.elements.WindowType;
 import com.sasha.adorufu.mod.gui.clickgui.legacy.elements.AdorufuWindow;
+import com.sasha.adorufu.mod.gui.clickgui.legacy.elements.WindowType;
 
 import static com.sasha.adorufu.mod.module.AdorufuCategory.CHAT;
 

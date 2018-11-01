@@ -18,8 +18,8 @@
 
 package com.sasha.adorufu.api;
 
-import com.sasha.adorufu.mod.AdorufuMod;
 import com.sasha.adorufu.api.exception.AdorufuPluginLoaderException;
+import com.sasha.adorufu.mod.AdorufuMod;
 import com.sasha.adorufu.mod.misc.YMLParser;
 import com.sasha.eventsys.SimpleListener;
 

@@ -18,9 +18,9 @@
 
 package com.sasha.adorufu.mod.events.adorufu;
 
-import com.sasha.eventsys.SimpleCancellableEvent;
 import com.sasha.adorufu.mod.misc.ModuleState;
 import com.sasha.adorufu.mod.module.AdorufuModule;
+import com.sasha.eventsys.SimpleCancellableEvent;
 
 /**
  * Created by Sasha on 08/08/2018 at 9:18 AM

@@ -19,11 +19,11 @@
 package com.sasha.adorufu.mod.gui.hud.renderableobjects;
 
 
-import com.sasha.adorufu.mod.misc.AdorufuMath;
 import com.sasha.adorufu.mod.AdorufuMod;
+import com.sasha.adorufu.mod.gui.hud.AdorufuHUD;
 import com.sasha.adorufu.mod.gui.hud.RenderableObject;
 import com.sasha.adorufu.mod.gui.hud.ScreenCornerPos;
-import com.sasha.adorufu.mod.gui.hud.AdorufuHUD;
+import com.sasha.adorufu.mod.misc.AdorufuMath;
 
 import java.io.IOException;
 

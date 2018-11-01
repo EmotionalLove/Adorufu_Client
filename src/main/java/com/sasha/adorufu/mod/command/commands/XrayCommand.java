@@ -21,11 +21,11 @@ package com.sasha.adorufu.mod.command.commands;
 import com.sasha.adorufu.mod.AdorufuMod;
 import com.sasha.adorufu.mod.module.modules.ModuleXray;
 import com.sasha.simplecmdsys.SimpleCommand;
+import com.sasha.simplecmdsys.SimpleCommandInfo;
 import net.minecraft.block.Block;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
-import com.sasha.simplecmdsys.SimpleCommandInfo;
 /**
  * Created by Sasha on 11/08/2018 at 1:18 PM
  **/

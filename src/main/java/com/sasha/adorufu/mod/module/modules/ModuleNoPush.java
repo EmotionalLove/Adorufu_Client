@@ -18,12 +18,12 @@
 
 package com.sasha.adorufu.mod.module.modules;
 
-import com.sasha.eventsys.SimpleEventHandler;
-import com.sasha.eventsys.SimpleListener;
 import com.sasha.adorufu.mod.events.client.ClientEntityCollideEvent;
-import com.sasha.adorufu.mod.module.ModuleInfo;
 import com.sasha.adorufu.mod.module.AdorufuCategory;
 import com.sasha.adorufu.mod.module.AdorufuModule;
+import com.sasha.adorufu.mod.module.ModuleInfo;
+import com.sasha.eventsys.SimpleEventHandler;
+import com.sasha.eventsys.SimpleListener;
 
 @ModuleInfo(description = "Don't collide with other entities")
 public class ModuleNoPush extends AdorufuModule implements SimpleListener {

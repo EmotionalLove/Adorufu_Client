@@ -20,7 +20,7 @@ package com.sasha.adorufu.mod.friend;
 
 import com.sasha.adorufu.mod.AdorufuMod;
 
-import java.io.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 

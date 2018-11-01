@@ -19,10 +19,10 @@
 package com.sasha.adorufu.mod.command.commands;
 
 import com.sasha.simplecmdsys.SimpleCommand;
+import com.sasha.simplecmdsys.SimpleCommandInfo;
 
 import static com.sasha.adorufu.mod.AdorufuMod.logMsg;
 import static com.sasha.adorufu.mod.module.modules.ModuleClientIgnore.ignorelist;
-import com.sasha.simplecmdsys.SimpleCommandInfo;
 /**
  * Created by Sasha on 09/08/2018 at 3:28 PM
  **/
