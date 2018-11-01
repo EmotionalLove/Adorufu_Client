@@ -18,27 +18,27 @@
 
 package com.sasha.adorufu.mod.feature.impl.deprecated;
 
-import com.sasha.eventsys.SimpleEventHandler;
-import com.sasha.eventsys.SimpleListener;
 import com.sasha.adorufu.mod.AdorufuMod;
 import com.sasha.adorufu.mod.events.client.ClientPacketRecieveEvent;
-import com.sasha.adorufu.mod.feature.annotation.FeatureInfo;
 import com.sasha.adorufu.mod.feature.AdorufuCategory;
+import com.sasha.adorufu.mod.feature.annotation.FeatureInfo;
 import com.sasha.adorufu.mod.feature.deprecated.AdorufuModule;
+import com.sasha.eventsys.SimpleEventHandler;
+import com.sasha.eventsys.SimpleListener;
 import net.minecraft.network.play.server.SPacketChat;
 
-import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import static com.sasha.adorufu.mod.feature.impl.AutoIgnoreFeature.stripColours;
 
 @FeatureInfo(description = "Show the estimated time left in queue in chat")
 public class ModuleQueueTime extends AdorufuModule implements SimpleListener {
-
-    private static long estTime = 10000;
+    public static int milestone = 5;
+    public String tu = "Calculating...";
+    private static long estTimePerSpot = 10000;
     private static int lastQueuePos = -1;
-    private static int sameCount = 1;
-    private ArrayList<Long> avgs = new ArrayList<>();
+    private static int queueMeasurementMilestone = 0;
+    private static long preMeasurementMilestoneTime = 0;
 
     public ModuleQueueTime() {
         super("QueueTime", AdorufuCategory.CHAT, false);
@@ -62,7 +62,7 @@ public class ModuleQueueTime extends AdorufuModule implements SimpleListener {
     @SimpleEventHandler
     public void onChatRecieved(ClientPacketRecieveEvent ev) {
         if (!this.isEnabled()) return;
-        if (ev.getRecievedPacket() instanceof SPacketChat){
+        if (ev.getRecievedPacket() instanceof SPacketChat) {
             SPacketChat e = (SPacketChat) ev.getRecievedPacket();
             //AdorufuMod.logMsg(false, stripColours(e.chatComponent.getUnformattedText()));
             if (stripColours(e.getChatComponent().getUnformattedText()).startsWith("Position in queue: ")) {
@@ -113,38 +113,12 @@ public class ModuleQueueTime extends AdorufuModule implements SimpleListener {
             }
         }
     }
-    private static String convert(long miliSeconds)
-    {
+
+    private static String convert(long miliSeconds) {
         int hrs = (int) TimeUnit.MILLISECONDS.toHours(miliSeconds) % 24;
         int min = (int) TimeUnit.MILLISECONDS.toMinutes(miliSeconds) % 60;
         int sec = (int) TimeUnit.MILLISECONDS.toSeconds(miliSeconds) % 60;
         return String.format("%02dh %02dm %02ds", hrs, min, sec);
     }
-    public Long handleAverages(long estTime) {
-        if (avgs.size() > 20) {
-            avgs.remove(0);
-            avgs.add(estTime);
-            long boi = 0;
-            for (Long l : avgs) {
-                boi+=l;
-            }
-            return boi / avgs.size();
-        }
-        avgs.add(estTime);
-        long boi = 0;
-        for (Long l : avgs) {
-            boi+=l;
-        }
-        return boi / avgs.size();
-    }
-    public Long handleAverages() {
-        if (avgs.size() < 1) {
-            return -1L;
-        }
-        long boi = 0;
-        for (Long l : avgs) {
-            boi+=l;
-        }
-        return boi / avgs.size();
-    }
+
 }
