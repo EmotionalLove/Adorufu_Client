@@ -25,6 +25,7 @@ import com.sasha.adorufu.mod.feature.AdorufuCategory;
 import com.sasha.adorufu.mod.feature.IAdorufuTickableFeature;
 import com.sasha.adorufu.mod.feature.annotation.FeatureInfo;
 import com.sasha.adorufu.mod.feature.option.AdorufuFeatureOption;
+import com.sasha.adorufu.mod.feature.option.AdorufuFeatureOptionBehaviour;
 import com.sasha.eventsys.SimpleEventHandler;
 import com.sasha.eventsys.SimpleListener;
 import net.minecraft.network.play.client.CPacketPlayer;
@@ -36,7 +37,8 @@ import net.minecraft.network.play.client.CPacketPlayer;
 public class AntiHungerFeature extends AbstractAdorufuTogglableFeature implements SimpleListener, IAdorufuTickableFeature {
     public AntiHungerFeature() {
         super("AntiHunger"
-                , AdorufuCategory.MOVEMENT
+                , AdorufuCategory.MOVEMENT,
+                new AdorufuFeatureOptionBehaviour(true)
                 , new AdorufuFeatureOption<>("ncp", true)
                 , new AdorufuFeatureOption<>("aac", false));
     }

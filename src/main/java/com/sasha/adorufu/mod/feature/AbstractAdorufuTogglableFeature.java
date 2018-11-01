@@ -19,6 +19,7 @@
 package com.sasha.adorufu.mod.feature;
 
 import com.sasha.adorufu.mod.feature.option.AdorufuFeatureOption;
+import com.sasha.adorufu.mod.feature.option.AdorufuFeatureOptionBehaviour;
 import com.sasha.simplesettings.annotation.SerialiseSuper;
 
 @SerialiseSuper
@@ -32,8 +33,12 @@ public abstract class AbstractAdorufuTogglableFeature
         super(name, category);
     }
 
-    public AbstractAdorufuTogglableFeature(String name, AdorufuCategory category, AdorufuFeatureOption... featureOption) {
+    @SafeVarargs public AbstractAdorufuTogglableFeature(String name, AdorufuCategory category, AdorufuFeatureOption<Boolean>... featureOption) {
         super(name, category, featureOption);
+    }
+
+    @SafeVarargs public AbstractAdorufuTogglableFeature(String name, AdorufuCategory category, AdorufuFeatureOptionBehaviour behaviour, AdorufuFeatureOption<Boolean>... featureOption) {
+        super(name, category, behaviour, featureOption);
     }
 
     @Override
