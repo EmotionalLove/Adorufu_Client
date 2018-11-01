@@ -30,9 +30,11 @@ public interface IAdorufuFeature {
         //
     }
     AdorufuCategory getCategory();
-    List<AdorufuFeatureOption> getOptions();
+    List<AdorufuFeatureOption<Boolean>> getOptions();
     AdorufuFeatureOptionBehaviour getOptionBehaviour();
-    Map<String, Boolean> getOptionsMap();
+    void setOption(String key, boolean state);
+    boolean getOption(String key);
+    Map<String, Boolean> getFormattableOptionsMap();
     boolean hasOptions();
     String getColouredName();
     String getFeatureName();

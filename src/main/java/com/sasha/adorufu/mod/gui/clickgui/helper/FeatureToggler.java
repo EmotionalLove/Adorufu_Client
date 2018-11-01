@@ -18,8 +18,8 @@
 
 package com.sasha.adorufu.mod.gui.clickgui.helper;
 
+import com.sasha.adorufu.mod.feature.IAdorufuFeature;
 import com.sasha.adorufu.mod.feature.IAdorufuTogglableFeature;
-import com.sasha.adorufu.mod.feature.deprecated.AdorufuModule;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.SoundCategory;
 
@@ -40,8 +40,8 @@ public class FeatureToggler implements Runnable, IFeatureToggler {
     }
 
     @Override
-    public AdorufuModule getMod() {
-        return null;
+    public IAdorufuFeature getMod() {
+        return m;
     }
 
     public boolean isTrue() {

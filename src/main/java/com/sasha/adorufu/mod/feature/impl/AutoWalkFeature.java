@@ -55,9 +55,9 @@ public class AutoWalkFeature extends AbstractAdorufuTogglableFeature implements 
 
     @Override
     public void onTick() {
-        this.setSuffix(this.getOptionsMap());
+        this.setSuffix(this.getFormattableOptionsMap());
         AdorufuMod.setPressed(AdorufuMod.minecraft.gameSettings.keyBindForward, true);
-        if (this.getOptionsMap().get("Pathfinder")) {
+        if (this.getFormattableOptionsMap().get("Pathfinder")) {
             timer++;
             if (timer >= 20) {
                 if (isObstacleThere()) {

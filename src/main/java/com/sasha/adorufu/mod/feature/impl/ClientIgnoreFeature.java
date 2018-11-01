@@ -59,7 +59,7 @@ public class ClientIgnoreFeature extends AbstractAdorufuTogglableFeature impleme
 
     @Override
     public void onTick() {
-        this.setSuffix(this.getOptionsMap());
+        this.setSuffix(this.getFormattableOptionsMap());
         this.setSuffix(ignorelist.size() + ":" + filterList.size());
     }
 
@@ -67,7 +67,7 @@ public class ClientIgnoreFeature extends AbstractAdorufuTogglableFeature impleme
     public void onPckRx(ClientPacketRecieveEvent e) {
         if (this.isEnabled() && e.getRecievedPacket() instanceof SPacketChat) {
             String msg = AutoIgnoreFeature.stripColours(((SPacketChat) e.getRecievedPacket()).getChatComponent().getUnformattedText());
-            if (this.getOptionsMap().get("Players")) {
+            if (this.getFormattableOptionsMap().get("Players")) {
                 for (String s : ignorelist) {
                     if (msg.toLowerCase().startsWith("<" + s.toLowerCase() + ">")) {
                         e.setCancelled(true);
@@ -81,7 +81,7 @@ public class ClientIgnoreFeature extends AbstractAdorufuTogglableFeature impleme
                     }
                 }
             }
-            if (this.getOptionsMap().get("Words")) {
+            if (this.getFormattableOptionsMap().get("Words")) {
                 String[] msgs = msg.split(" ");
                 for (String s : filterList) {
                     for (String msg1 : msgs) {

@@ -49,18 +49,18 @@ public class BoatFlyFeature extends AbstractAdorufuTogglableFeature implements I
 
     @Override
     public void onTick() {
-        this.setSuffix(this.getOptionsMap());
+        this.setSuffix(this.getFormattableOptionsMap());
         if (AdorufuMod.minecraft.player.isRiding()) {
-            if (AdorufuMod.minecraft.player.getRidingEntity() instanceof EntityBoat || this.getOptionsMap().get("all entities")) {
+            if (AdorufuMod.minecraft.player.getRidingEntity() instanceof EntityBoat || this.getFormattableOptionsMap().get("all entities")) {
                 Entity e = AdorufuMod.minecraft.player.getRidingEntity();
                 if (e == null) return;
-                if (!this.getOptionsMap().get("gravity")) {
+                if (!this.getFormattableOptionsMap().get("gravity")) {
                     e.setNoGravity(true);
                 }
                 else {
                     e.setNoGravity(false);
                 }
-                if (this.getOptionsMap().get("yawlock")) e.rotationYaw = (AdorufuMod.minecraft.player.rotationYaw);
+                if (this.getFormattableOptionsMap().get("yawlock")) e.rotationYaw = (AdorufuMod.minecraft.player.rotationYaw);
                 // actual boatfly
                 if (AdorufuMod.minecraft.gameSettings.keyBindJump.isPressed()) {
                     e.motionY = 0.5f;

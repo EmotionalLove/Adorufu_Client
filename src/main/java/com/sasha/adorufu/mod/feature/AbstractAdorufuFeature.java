@@ -32,7 +32,7 @@ public abstract class AbstractAdorufuFeature implements IAdorufuFeature {
     private String name;
     private String suffix;
     private AdorufuCategory category;
-    private List<AdorufuFeatureOption> featureOptions;
+    private List<AdorufuFeatureOption<Boolean>> featureOptions;
     private AdorufuFeatureOptionBehaviour behaviour;
 
     /**
@@ -47,7 +47,7 @@ public abstract class AbstractAdorufuFeature implements IAdorufuFeature {
     /**
      * Create a Feature with options using the default behaviour.
      */
-    public AbstractAdorufuFeature(String name, AdorufuCategory category, AdorufuFeatureOption... featureOption) {
+    @SafeVarargs public AbstractAdorufuFeature(String name, AdorufuCategory category, AdorufuFeatureOption<Boolean>... featureOption) {
         this.name = name;
         this.category = category;
         this.featureOptions = Arrays.asList(featureOption);
@@ -57,7 +57,7 @@ public abstract class AbstractAdorufuFeature implements IAdorufuFeature {
     /**
      * Create a Feature with options using a defined behaviour.
      */
-    public AbstractAdorufuFeature(String name, AdorufuCategory category, AdorufuFeatureOptionBehaviour behaviour, AdorufuFeatureOption... featureOption) {
+    @SafeVarargs public AbstractAdorufuFeature(String name, AdorufuCategory category, AdorufuFeatureOptionBehaviour behaviour, AdorufuFeatureOption<Boolean>... featureOption) {
         this.name = name;
         this.category = category;
         this.featureOptions = Arrays.asList(featureOption);
@@ -72,20 +72,40 @@ public abstract class AbstractAdorufuFeature implements IAdorufuFeature {
         return behaviour;
     }
 
-    public List<AdorufuFeatureOption> getOptions() {
+    public List<AdorufuFeatureOption<Boolean>> getOptions() {
         return this.featureOptions;
     }
 
+    public void setOption(String key, boolean state) {
+        if (this.getOptionBehaviour().isUsingModeBehaviour() && !state) return;
+        for (AdorufuFeatureOption<Boolean> option : this.getOptions()) {
+            if (this.getOptionBehaviour().isUsingModeBehaviour() && !option.getIdentifer().equalsIgnoreCase(key)) {
+                option.setStatus(false);
+            }
+            if (option.getIdentifer().equalsIgnoreCase(key)) {
+                option.setStatus(state);
+            }
+        }
+    }
+
+    public boolean getOption(String key) {
+        for (AdorufuFeatureOption<Boolean> option : this.getOptions()) {
+            if (option.getIdentifer().equalsIgnoreCase(key)) {
+                return option.getStatus();
+            }
+        }
+        return false;
+    }
+
     //todo
-    public Map<String, Boolean> getOptionsMap() {
+    public Map<String, Boolean> getFormattableOptionsMap() {
         return this.featureOptions
                 .stream()
-                .filter(e -> e.getStatus() instanceof Boolean)
                 .collect(
                         Collectors
                                 .toMap
                                         (AdorufuFeatureOption::getIdentifer,
-                                                featureOption -> (boolean) featureOption.getStatus()));
+                                                AdorufuFeatureOption::getStatus));
     }
 
     public boolean hasOptions() {

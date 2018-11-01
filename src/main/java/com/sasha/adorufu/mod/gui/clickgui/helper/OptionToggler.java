@@ -19,7 +19,6 @@
 package com.sasha.adorufu.mod.gui.clickgui.helper;
 
 import com.sasha.adorufu.mod.feature.IAdorufuFeature;
-import com.sasha.adorufu.mod.feature.deprecated.AdorufuModule;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.SoundCategory;
 
@@ -38,14 +37,11 @@ public class OptionToggler implements Runnable, IToggler {
     @Override
     public void run() {
         minecraft.world.playSound(minecraft.player.posX, minecraft.player.posY, minecraft.player.posZ, SoundEvents.UI_BUTTON_CLICK , SoundCategory.AMBIENT, 1f, 1f, false);
-        if (m.getOptionBehaviour().isUsingModeBehaviour()) {
-            m.getOptions();
-        }
-        m.toggleOption(optionName);
+        m.setOption(optionName, !m.getOption(optionName));
     }
 
     @Override
-    public AdorufuModule getMod() {
+    public IAdorufuFeature getMod() {
         return m;
     }
 

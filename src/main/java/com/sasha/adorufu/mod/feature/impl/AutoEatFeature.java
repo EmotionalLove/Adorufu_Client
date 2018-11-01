@@ -50,18 +50,18 @@ public class AutoEatFeature extends AbstractAdorufuTogglableFeature implements I
 
     @Override
     public void onTick() {
-        this.setSuffix(this.getOptionsMap());
+        this.setSuffix(this.getFormattableOptionsMap());
         if (AdorufuMod.minecraft.player.getFoodStats().getFoodLevel() <= 8) {
             // we need to eat
             for (int s = 0; s <= 8; s++) {
                 if (AdorufuMod.minecraft.player.inventory.getStackInSlot(s).getItemUseAction() == EnumAction.EAT) {
                     // we can eat this item
-                    if (this.getOptionsMap().get("conserve gapple")) {
+                    if (this.getFormattableOptionsMap().get("conserve gapple")) {
                         if (AdorufuMod.minecraft.player.inventory.getStackInSlot(s).getItem() == Items.GOLDEN_APPLE) {
                             continue;
                         }
                     }
-                    else if (this.getOptionsMap().get("priority gapple") && !checked) {
+                    else if (this.getFormattableOptionsMap().get("priority gapple") && !checked) {
                         if (AdorufuMod.minecraft.player.inventory.getStackInSlot(s).getItem() != Items.GOLDEN_APPLE) {
                             continue;
                         }
@@ -74,7 +74,7 @@ public class AutoEatFeature extends AbstractAdorufuTogglableFeature implements I
                     return;
                 }
             }
-            if (this.getOptionsMap().get("priority gapple")) {
+            if (this.getFormattableOptionsMap().get("priority gapple")) {
                 checked = true;
             }
             return;

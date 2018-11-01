@@ -58,19 +58,19 @@ public class DesktopNotificationsFeature extends AbstractAdorufuTogglableFeature
 
     @Override
     public void onTick() {
-        this.setSuffix(this.getOptionsMap());
+        this.setSuffix(this.getFormattableOptionsMap());
     }
 
     @SimpleEventHandler
     public void onScreenChanged(ClientScreenChangedEvent e) {
         if (e.getScreen() instanceof GuiDisconnected) {
-            if (Display.isActive() || !this.getOptionsMap().get("Server kick")) return;
+            if (Display.isActive() || !this.getFormattableOptionsMap().get("Server kick")) return;
             AdorufuMod.TRAY_MANAGER.trayIcon.displayMessage("Disconnected", ((GuiDisconnected) e.getScreen()).message.getUnformattedText().replaceAll("§.", ""), TrayIcon.MessageType.WARNING);
         }
     }
     @SimpleEventHandler
     public void onChatRx(ClientPacketRecieveEvent e) {
-        if (!this.isEnabled() || this.getOptionsMap().get("Chat mentions")) return;
+        if (!this.isEnabled() || this.getFormattableOptionsMap().get("Chat mentions")) return;
         if (e.getRecievedPacket() instanceof SPacketChat) {
             SPacketChat pck = (SPacketChat) e.getRecievedPacket();
             if (!Display.isActive() && pck.getChatComponent().getUnformattedText().contains(AdorufuMod.minecraft.player.getName())) {

@@ -18,10 +18,10 @@
 
 package com.sasha.adorufu.mod.gui.clickgui.helper;
 
-import com.sasha.adorufu.mod.feature.deprecated.AdorufuModule;
+import com.sasha.adorufu.mod.feature.IAdorufuFeature;
 
 public interface IToggler {
     boolean isTrue();
     void run();
-    AdorufuModule getMod();
+    IAdorufuFeature getMod();
 }

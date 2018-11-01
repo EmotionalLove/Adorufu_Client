@@ -64,14 +64,14 @@ public class ChunkTraceFeature extends AbstractAdorufuTogglableFeature
     @Override
     public void onTick() {
         LinkedHashMap<String, Boolean> suffixMap = new LinkedHashMap<>();
-        suffixMap.put("Chunks", this.getOptionsMap().get("ChunkESP"));
-        suffixMap.put("Pearls", this.getOptionsMap().get("PearlNotify"));
+        suffixMap.put("Chunks", this.getFormattableOptionsMap().get("ChunkESP"));
+        suffixMap.put("Pearls", this.getFormattableOptionsMap().get("PearlNotify"));
         this.setSuffix(suffixMap);
     }
 
     @Override
     public void onRender() {
-        if (this.getOptionsMap().get("ChunkESP")) {
+        if (this.getFormattableOptionsMap().get("ChunkESP")) {
                 for (Chunk chunk : chunks) {
                     int x, z;
                     x = chunk.x * 16;
@@ -85,14 +85,14 @@ public class ChunkTraceFeature extends AbstractAdorufuTogglableFeature
 
     @SimpleEventHandler
     public void onEnderPearlSpawn(ClientEnderPearlSpawnEvent e) {
-        if (!this.isEnabled() || !this.getOptionsMap().get("PearlNotify")) return;
+        if (!this.isEnabled() || !this.getFormattableOptionsMap().get("PearlNotify")) return;
         AdorufuMod.logMsg(false, "\2478(\247bChunkTrace\2478) \2477Ender pearl loaded @ XYZ *x *y *z".replace("*x", e.getCoordinate()[0] + "")
                 .replace("*y", e.getCoordinate()[1] + "").replace("*z", e.getCoordinate()[2] + ""));
     }
 
     @SimpleEventHandler
     public void onNewChunk(ServerLoadChunkEvent e) {
-        if (!this.isEnabled() || !this.getOptionsMap().get("ChunkESP")) return;
+        if (!this.isEnabled() || !this.getFormattableOptionsMap().get("ChunkESP")) return;
         if (e.getPacketIn().isFullChunk()) return;
         if (!chunks.contains(e.getChunk())) {
             chunks.add(e.getChunk());

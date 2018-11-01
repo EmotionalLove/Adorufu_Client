@@ -64,8 +64,8 @@ public class CrystalAuraFeature extends AbstractAdorufuTogglableFeature implemen
     @Override
     public void onTick() {
         if (this.isEnabled()) {
-            this.setSuffix(this.getOptionsMap());
-            if (this.getOptionsMap().get("auto")) { // use radius of 3
+            this.setSuffix(this.getFormattableOptionsMap());
+            if (this.getFormattableOptionsMap().get("auto")) { // use radius of 3
                 boolean hasCrystals = false; // make sure the player even has crystal in their hotbar.
                 for (int s = 36; s <= 44; s++) {
                     ItemStack stack = AdorufuMod.minecraft.player.inventory.getStackInSlot(s);
@@ -98,7 +98,7 @@ public class CrystalAuraFeature extends AbstractAdorufuTogglableFeature implemen
             }
 
 
-            if (this.getOptionsMap().get("aura")) {
+            if (this.getFormattableOptionsMap().get("aura")) {
                 for (Entity e : AdorufuMod.minecraft.world.loadedEntityList) {
                     if (e instanceof EntityEnderCrystal) {
                         if (AdorufuMod.minecraft.player.getDistance(e) <= 3.8f) {

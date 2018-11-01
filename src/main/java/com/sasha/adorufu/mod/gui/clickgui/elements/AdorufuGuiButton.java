@@ -106,17 +106,30 @@ public class AdorufuGuiButton implements IAdorufuGuiElement {
                     y >= this.y && y <= (this.y + this.height)) {
                 if (buttonAction instanceof FeatureToggler && ((FeatureToggler) buttonAction).getFeature().hasOptions()) {
                     List<IAdorufuGuiElement> proposedOptionButtons = new ArrayList<>();
-                    ((FeatureToggler) buttonAction).getFeature().getOptions().forEach((name, bool) -> {
-                        proposedOptionButtons.add(new AdorufuGuiButton(name, 0, 0, 100, 12,
-                                new OptionToggler(buttonAction.getMod(), name)));
+                    ((FeatureToggler) buttonAction).getFeature().getOptions().forEach(name -> {
+                        String optionName = name.getIdentifer();
+                        proposedOptionButtons.add(
+                                new AdorufuGuiButton(
+                                        name.getIdentifer(),
+                                        0,
+                                        0,
+                                        100,
+                                        12,
+                                        new OptionToggler(buttonAction.getMod(), optionName)));
                     });
                     new Thread(() -> {
                         try {
                             AdorufuClickGUI.elementList.add(
-                                    new AdorufuGuiWindow(this.x + (this.width + 10),
-                                            y, AdorufuClickGUI.calcListLength(proposedOptionButtons.size(), 12), 100,
-                                            86f, 0f, 80f, 255f,
-                                            buttonAction.getMod().getModuleName(),
+                                    new AdorufuGuiWindow(
+                                            this.x + (this.width + 10),
+                                            y,
+                                            AdorufuClickGUI.calcListLength(proposedOptionButtons.size(), 12),
+                                            100,
+                                            86f,
+                                            0f,
+                                            80f,
+                                            255f,
+                                            buttonAction.getMod().getFeatureName(),
                                             proposedOptionButtons)
                             );
                         } finally {

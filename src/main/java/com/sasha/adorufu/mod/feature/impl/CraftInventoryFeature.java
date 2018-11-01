@@ -52,7 +52,7 @@ public class CraftInventoryFeature extends AbstractAdorufuTogglableFeature imple
 
     @Override
     public void onTick() {
-        this.setSuffix(this.getOptionsMap());
+        this.setSuffix(this.getFormattableOptionsMap());
     }
 
 
@@ -62,7 +62,7 @@ public class CraftInventoryFeature extends AbstractAdorufuTogglableFeature imple
         if (e.getContainer() instanceof ContainerPlayer) {
             e.setCancelled(true);
         }
-        if (this.getOptionsMap().get("Illegals") && !e.isCancelled()) {
+        if (this.getFormattableOptionsMap().get("Illegals") && !e.isCancelled()) {
             e.setCancelled(true);
         }
     }
