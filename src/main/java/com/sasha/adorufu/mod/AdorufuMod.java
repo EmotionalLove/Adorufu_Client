@@ -25,9 +25,8 @@ import com.sasha.adorufu.mod.command.CommandHandler;
 import com.sasha.adorufu.mod.command.commands.*;
 import com.sasha.adorufu.mod.desktop.AdorufuSystemTrayManager;
 import com.sasha.adorufu.mod.desktop.AdorufuWindowsBatteryManager;
+import com.sasha.adorufu.mod.events.ForgeEventHandler;
 import com.sasha.adorufu.mod.events.adorufu.AdorufuDataFileRetrievedEvent;
-import com.sasha.adorufu.mod.events.client.ClientInputUpdateEvent;
-import com.sasha.adorufu.mod.events.client.ClientOverlayRenderEvent;
 import com.sasha.adorufu.mod.exception.AdorufuException;
 import com.sasha.adorufu.mod.friend.FriendManager;
 import com.sasha.adorufu.mod.gui.fonts.FontManager;
@@ -49,15 +48,12 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.util.Util;
 import net.minecraft.util.text.TextComponentString;
-import net.minecraftforge.client.event.InputUpdateEvent;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -76,13 +72,13 @@ import static com.sasha.adorufu.mod.misc.Manager.Renderable.renderableRegistry;
 
 @Mod(modid = AdorufuMod.MODID, name = AdorufuMod.NAME, version = AdorufuMod.VERSION, canBeDeactivated = true, clientSideOnly = true)
 public class AdorufuMod implements SimpleListener {
+
     public static final String MODID = "adorufuforge";
     public static final String NAME = "Adorufu";
     public static final String JAP_NAME = "\u30A2\u30C9\u30EB\u30D5";
     public static final String VERSION = "1.5.3";
 
-
-    private static Logger logger = LogManager.getLogger("Adorufu " + VERSION);
+    private static Logger logger = LogManager.getLogger(NAME + " " + VERSION);
     public static SimpleEventManager EVENT_MANAGER = new SimpleEventManager();
     public static AdorufuDataManager DATA_MANAGER = new AdorufuDataManager();
     /**
@@ -193,7 +189,7 @@ public class AdorufuMod implements SimpleListener {
                 e.printStackTrace();
             }
         }, 0, TimeUnit.NANOSECONDS);
-        MinecraftForge.EVENT_BUS.register(new ForgeEvent());
+        MinecraftForge.EVENT_BUS.register(ForgeEventHandler.INSTANCE);
         EVENT_MANAGER.registerListener(new AdorufuUpdateChecker());
         EVENT_MANAGER.registerListener(this);
         logMsg(true, "Adorufu cleanly initialised!");
@@ -393,22 +389,5 @@ public class AdorufuMod implements SimpleListener {
     @SimpleEventHandler
     public void onDataFileRetrieved(AdorufuDataFileRetrievedEvent e) {
         this.reload(true);
-    }
-}
-
-class ForgeEvent {
-    @SubscribeEvent
-    public void onRenderLost(RenderGameOverlayEvent.Post e) {
-        RenderGameOverlayEvent.ElementType target = RenderGameOverlayEvent.ElementType.TEXT;
-        if (e.getType() == target) {
-            ClientOverlayRenderEvent event = new ClientOverlayRenderEvent(e.getPartialTicks());
-            AdorufuMod.EVENT_MANAGER.invokeEvent(event);
-        }
-    }
-
-    @SubscribeEvent
-    public void onMoveUpdate(InputUpdateEvent e) {
-        ClientInputUpdateEvent updateEvent = new ClientInputUpdateEvent(e.getMovementInput());
-        AdorufuMod.EVENT_MANAGER.invokeEvent(updateEvent);
     }
 }

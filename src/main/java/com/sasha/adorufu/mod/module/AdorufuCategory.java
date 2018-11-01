@@ -22,11 +22,18 @@ package com.sasha.adorufu.mod.module;
  * Created by Sasha on 08/08/2018 at 8:57 AM
  **/
 public enum AdorufuCategory {
-    COMBAT,
-    MOVEMENT,
-    RENDER,
-    GUI,
-    MISC,
-    CHAT,
-    NA
+
+    COMBAT('4'),
+    MOVEMENT('6'),
+    RENDER('d'),
+    GUI('7'),
+    MISC('b'),
+    CHAT('3'),
+    NA('8');
+
+    public final char colorCode;
+
+    AdorufuCategory(char colorCode) {
+        this.colorCode = colorCode;
+    }
 }

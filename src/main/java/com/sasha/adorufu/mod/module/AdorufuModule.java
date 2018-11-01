@@ -34,7 +34,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * Created by Sasha on 08/08/2018 at 8:30 AM
  * This class is based off of Xdolf 3.x's Module class, however this is redone to make use of the Event system.
- * Fun fact: Xdolf 3.x's Event system was absolutely horrible, it was easier to just _not use it_...
+ * Fun fact: Xdolf 3.x's Event system was absolutely horrible, it was easier to just <i>not use it</i>...
  **/
 public abstract class AdorufuModule {
 
@@ -51,166 +51,87 @@ public abstract class AdorufuModule {
 
     public static ArrayList<AdorufuModule> displayList = new ArrayList<>(); // used for the hud
 
-    public AdorufuModule(String moduleName, AdorufuCategory moduleCategory, boolean isRenderable){
-        this.moduleName = moduleName;
-        this.moduleCategory = moduleCategory;
-        String c;
-        if (moduleCategory == AdorufuCategory.COMBAT) {
-            c = "4";
-        }
-        else if (moduleCategory == AdorufuCategory.CHAT) {
-            c = "3";
-        }
-        else if (moduleCategory == AdorufuCategory.GUI) {
-            c = "7";
-        }
-        else if (moduleCategory == AdorufuCategory.MISC) {
-            c = "b";
-        }
-        else if (moduleCategory == AdorufuCategory.MOVEMENT) {
-            c = "6";
-        }
-        else if (moduleCategory == AdorufuCategory.RENDER) {
-            c = "d";
-        }
-        else {
-            c = "8";
-        }
-        this.moduleNameColoured = "\247" + c + moduleName;
-        this.isRenderable= isRenderable;
-        this.isEnabled=false;
+    public AdorufuModule(String moduleName, AdorufuCategory moduleCategory, boolean isRenderable) {
+        this(moduleName, moduleCategory, isRenderable, false);
     }
-
 
     public AdorufuModule(String moduleName, AdorufuCategory moduleCategory, boolean isRenderable, boolean hasOptions) {
-        this.hasOptions = hasOptions;
-        if (hasOptions) this.moduleOptions = new LinkedHashMap<>();
-        this.moduleName = moduleName;
-        this.moduleCategory = moduleCategory;
-        String c;
-        if (moduleCategory == AdorufuCategory.COMBAT) {
-            c = "4";
-        }
-        else if (moduleCategory == AdorufuCategory.CHAT) {
-            c = "3";
-        }
-        else if (moduleCategory == AdorufuCategory.GUI) {
-            c = "7";
-        }
-        else if (moduleCategory == AdorufuCategory.MISC) {
-            c = "b";
-        }
-        else if (moduleCategory == AdorufuCategory.MOVEMENT) {
-            c = "6";
-        }
-        else if (moduleCategory == AdorufuCategory.RENDER) {
-            c = "d";
-        }
-        else {
-            c = "8";
-        }
-        this.moduleNameColoured = "\247" + c + moduleName;
-        this.isRenderable= isRenderable;
-        this.isEnabled=false;
+        this(moduleName, moduleCategory, isRenderable, hasOptions, false);
     }
+
     public AdorufuModule(String moduleName, AdorufuCategory moduleCategory, boolean isRenderable, boolean hasOptions, boolean useMode) {
-        this.hasOptions = hasOptions;
         this.optionMode = useMode;
-        if (hasOptions) this.moduleOptions = new LinkedHashMap<>();
         this.moduleName = moduleName;
         this.moduleCategory = moduleCategory;
-        String c;
-        if (moduleCategory == AdorufuCategory.COMBAT) {
-            c = "4";
-        }
-        else if (moduleCategory == AdorufuCategory.CHAT) {
-            c = "3";
-        }
-        else if (moduleCategory == AdorufuCategory.GUI) {
-            c = "7";
-        }
-        else if (moduleCategory == AdorufuCategory.MISC) {
-            c = "b";
-        }
-        else if (moduleCategory == AdorufuCategory.MOVEMENT) {
-            c = "6";
-        }
-        else if (moduleCategory == AdorufuCategory.RENDER) {
-            c = "d";
-        }
-        else {
-            c = "8";
-        }
-        this.moduleNameColoured = "\247" + c + moduleName;
-        this.isRenderable= isRenderable;
-        this.isEnabled=false;
+        this.moduleNameColoured = "\247" + moduleCategory.colorCode + moduleName;
+        this.isRenderable = isRenderable;
+        this.isEnabled = false;
+        this.moduleOptions = (this.hasOptions = hasOptions) ? new LinkedHashMap<>() : null;
     }
-
-    ///getters
-
-
 
     public boolean useModeSelection() {
         return optionMode;
     }
+
     /**
      * gets module name
+     *
      * @return String
      */
     public String getModuleName() {
         return moduleName;
     }
 
-    public String getDescription(Class<?> clazz){
-        ModuleInfo d = clazz.getAnnotation(ModuleInfo.class);
-        if (d == null){
-            return "No description provided.";
-        }
-        return d.description();
+    public String getDescription() {
+        ModuleInfo d = this.getClass().getAnnotation(ModuleInfo.class);
+        return d == null ? "No description provided." : d.description();
     }
-    public boolean isPostExec(Class<?> clazz){
-        PostToggleExec d = clazz.getAnnotation(PostToggleExec.class);
-        return d != null;
+
+    public boolean isPostExec() {
+        return this.getClass().isAnnotationPresent(PostToggleExec.class);
     }
 
     public String getModuleNameColoured() {
-        return moduleNameColoured;
+        return this.moduleNameColoured;
     }
 
     public String getSuffix() {
-        return suffix;
+        return this.suffix;
     }
 
-    public void setSuffix(String s){
-        this.suffix= " \2478[\2477" + s + "\2478]";
+    public void setSuffix(String s) {
+        this.suffix = " \2478[\2477" + s + "\2478]";
     }
-    public void setSuffix(String[] s){
+
+    public void setSuffix(String[] s) {
         StringBuilder b = new StringBuilder();
         for (int i = 0; i < s.length; i++) {
-            if(i==0){
+            if (i == 0) {
                 b.append(s[i]);
                 continue;
             }
             b.append(", ").append(s[i]);
         }
-        this.suffix= " \2478[\2477" + b.toString() + "\2478]";
+        this.suffix = " \2478[\2477" + b.toString() + "\2478]";
     }
-    public void setSuffix(LinkedHashMap<String, Boolean> boolMap){
+
+    public void setSuffix(LinkedHashMap<String, Boolean> boolMap) {
         StringBuilder b = new StringBuilder();
         AtomicInteger counter = new AtomicInteger();
         boolMap.entrySet().stream().filter(Map.Entry::getValue).forEach(strBool -> {
-            if (counter.get()==0){
+            if (counter.get() == 0) {
                 b.append(strBool.getKey());
                 counter.getAndIncrement();
                 return;
             }
             b.append(", ").append(strBool.getKey());
         });
-        if (counter.get()==0) {
+        if (counter.get() == 0) {
             b.append("\247cNone");
         }
-        this.suffix= " \2478[\2477" + b.toString() + "\2478]";
+        this.suffix = " \2478[\2477" + b.toString() + "\2478]";
     }
+
     public LinkedHashMap<String, Boolean> getModuleOptionsMap() {
         return moduleOptions;
     }
@@ -218,92 +139,107 @@ public abstract class AdorufuModule {
     public void addOption(String name, boolean def) {
         this.moduleOptions.put(name.toLowerCase(), AdorufuMod.DATA_MANAGER.getSavedModuleOption(this.getModuleName(), name, def));
     }
+
     public void toggleOption(String name) {
-        if (!this.moduleOptions.containsKey(name.toLowerCase()))
-            throw new AdorufuModuleOptionNotFoundException("The option" + name.toLowerCase() + "doesn't exist!");
-        boolean toggle = !this.moduleOptions.get(name.toLowerCase());
-        this.moduleOptions.put(name.toLowerCase(), toggle);
+        String key = name.toLowerCase();
+        requireOptionExists(key);
+        boolean toggle = !this.moduleOptions.get(key);
+        this.moduleOptions.put(key, toggle);
         try {
             AdorufuMod.DATA_MANAGER.saveModuleOption(this.getModuleName(), name, toggle);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
     /**
      * Used if you only want to allow one option at a time
      */
     public void toggleOptionMode(String name) {
-        if (!this.moduleOptions.containsKey(name.toLowerCase())) throw new AdorufuModuleOptionNotFoundException("The option" + name.toLowerCase() + "doesn't exist!");
-        boolean toggle = !this.moduleOptions.get(name.toLowerCase());
-        this.moduleOptions.put(name.toLowerCase(), toggle);
+        String key = name.toLowerCase();
+        requireOptionExists(key);
+        boolean toggle = !this.moduleOptions.get(key);
+        this.moduleOptions.put(key, toggle);
         try {
             AdorufuMod.DATA_MANAGER.saveModuleOption(this.getModuleName(), name, toggle);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        this.getModuleOptionsMap().forEach((str, bool)-> {
+        this.getModuleOptionsMap().forEach((str, bool) -> {
             if (bool) {
                 this.toggleOption(str);
             }
         });
     }
+
     public boolean getOption(String name) {
-        if (!this.moduleOptions.containsKey(name.toLowerCase())) throw new AdorufuModuleOptionNotFoundException("The option" + name.toLowerCase() + "doesn't exist!");
-        return this.moduleOptions.get(name.toLowerCase());
+        String key = name.toLowerCase();
+        requireOptionExists(key);
+        return this.moduleOptions.get(key);
+    }
+
+    private void requireOptionExists(String key) {
+        if (!this.moduleOptions.containsKey(key)) {
+            throw new AdorufuModuleOptionNotFoundException("The option" + key + "doesn't exist!");
+        }
     }
 
     public int getKeyBind() {
-        return keyBind;
+        return this.keyBind;
     }
 
     public void setKeyBind(int keyBind) {
         this.keyBind = keyBind;
     }
 
-    public void removeSuffix(){
+    public void removeSuffix() {
         this.suffix = "";
     }
 
     /**
      * Gets whether its toggled or not
+     *
      * @return bool
      */
     public boolean isEnabled() {
-        return isEnabled;
+        return this.isEnabled;
     }
 
-    public boolean hasForcefulAnnotation(Class<?> clazz){
-        return clazz.getAnnotation(ForcefulEnable.class)!= null;
+    public boolean hasForcefulAnnotation(Class<?> clazz) {
+        return clazz.getAnnotation(ForcefulEnable.class) != null;
     }
 
     /**
      * Gets the module's category
+     *
      * @return AdorufuCategory enum
      */
     public AdorufuCategory getModuleCategory() {
-        return moduleCategory;
+        return this.moduleCategory;
     }
 
     /**
      * whether the module is used to toggle a HUD element
+     *
      * @return bool
      */
     public boolean isRenderable() {
-        return isRenderable;
+        return this.isRenderable;
     }
-    public boolean hasOptions() { return hasOptions;}
 
-    ///voids
+    public boolean hasOptions() {
+        return this.hasOptions;
+    }
 
     /**
      * toggles the module and runs all the needed disable/enable fhnctions
      * invokes an AdorufuModuleTogglePreEvent
      */
-    public void toggle(){
+    public void toggle() {
         AdorufuModuleTogglePreEvent event = new AdorufuModuleTogglePreEvent(this, (isEnabled ? ModuleState.DISABLE : ModuleState.ENABLE));
         AdorufuMod.EVENT_MANAGER.invokeEvent(event);
-        if (event.isCancelled()){
-            AdorufuMod.logWarn(true, "Module \""+this.getModuleName()+"\" toggle was cancelled!");
+        if (event.isCancelled()) {
+            AdorufuMod.logWarn(true, "Module \"" + this.getModuleName() + "\" toggle was cancelled!");
             return;
         }
         this.isEnabled = !this.isEnabled;
@@ -313,44 +249,43 @@ public abstract class AdorufuModule {
 
     /**
      * forces the module to become active or inactive
-     * @param state enable or disable
+     *
+     * @param state                enable or disable
      * @param executeOnStateMethod whether you want to execute onDisable() or onEnable()
      */
-    public void forceState(ModuleState state, boolean executeOnStateMethod, boolean resetHud){
-        if (state == ModuleState.ENABLE){
+    public void forceState(ModuleState state, boolean executeOnStateMethod, boolean resetHud) {
+        if (state == ModuleState.ENABLE) {
             this.isEnabled = true;
-            if (executeOnStateMethod){
+            if (executeOnStateMethod) {
                 this.onEnable();
             }
-            if (!this.isRenderable()){
+            if (!this.isRenderable()) {
                 AdorufuModule.displayList.add(this);
                 return;
             }
-            if(!resetHud){
+            if (!resetHud) {
                 return;
             }
             AdorufuHUD.resetHUD();
-        }else{
+        } else {
             this.isEnabled = false;
-            if (executeOnStateMethod){
+            if (executeOnStateMethod) {
                 this.onDisable();
             }
-            if (!this.isRenderable()){
+            if (!this.isRenderable()) {
                 AdorufuModule.displayList.remove(this);
                 return;
             }
-            if(!resetHud){
+            if (!resetHud) {
                 return;
             }
             AdorufuHUD.resetHUD();
         }
     }
 
-
-
     public abstract void onEnable();
-    public void init(){}
-    public  abstract void onDisable();
-    public void onRender(){} // called a lot more than 20x per getValue
+    public void init() {}
+    public abstract void onDisable();
+    public void onRender() {} // called a lot more than 20x per getValue
     public abstract void onTick(); // callee 20x per getValue
 }

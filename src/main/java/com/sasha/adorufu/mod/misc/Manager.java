@@ -58,11 +58,11 @@ public class Manager {
                 e.setCancelled(true);
                 return;
             }
-            if (e.getToggleState() == ModuleState.ENABLE && !e.getToggledModule().isPostExec(e.getToggledModule().getClass())) {
+            if (e.getToggleState() == ModuleState.ENABLE && !e.getToggledModule().isPostExec()) {
                 e.getToggledModule().onEnable();
                 return;
             }
-            if (e.getToggledModule().isPostExec(e.getToggledModule().getClass())) return;
+            if (e.getToggledModule().isPostExec()) return;
             e.getToggledModule().onDisable();
         }
 
@@ -75,7 +75,7 @@ public class Manager {
                 e1.printStackTrace();
             }
             if (e.getToggleState() == ModuleState.ENABLE) {
-                if (e.getToggledModule().isPostExec(e.getToggledModule().getClass())) e.getToggledModule().onEnable();
+                if (e.getToggledModule().isPostExec()) e.getToggledModule().onEnable();
 
                 if (!e.getToggledModule().isRenderable()) {
                     AdorufuModule.displayList.add(e.getToggledModule());
@@ -83,7 +83,7 @@ public class Manager {
                 }
                 return;
             }
-            if (e.getToggledModule().isPostExec(e.getToggledModule().getClass())) e.getToggledModule().onDisable();
+            if (e.getToggledModule().isPostExec()) e.getToggledModule().onDisable();
             if (!e.getToggledModule().isRenderable()) {
                 AdorufuModule.displayList.remove(e.getToggledModule());
                 return;
