@@ -34,11 +34,9 @@ public class ModuleAntiAFK extends AdorufuModule {
 
     @Override
     public void onTick() {
-        if (this.isEnabled()) {
-            if (++ticks >= 20) {
-                AdorufuMod.minecraft.clickMouse();
-                ticks = 0;
-            }
+        if (this.isEnabled() && ++ticks >= 20) {
+            AdorufuMod.minecraft.clickMouse();
+            ticks = 0;
         }
     }
 }

@@ -283,9 +283,9 @@ public abstract class AdorufuModule {
         }
     }
 
-    public void onEnable() {}
-    public void init() {}
-    public void onDisable() {}
-    public void onRender() {} // called a lot more than 20x per getValue
-    public void onTick() {} // callee 20x per getValue
+    public void onEnable()  { /* Called when the module is enabled       */ }
+    public void init()      { /* Called when the module is registered    */ }
+    public void onDisable() { /* Called when the module is disabled      */ }
+    public void onRender()  { /* Called a lot more than 20x per getValue */ }
+    public void onTick()    { /* Called 20x per getValue                 */ }
 }
