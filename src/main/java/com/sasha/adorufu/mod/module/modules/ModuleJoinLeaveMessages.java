@@ -113,6 +113,7 @@ public class ModuleJoinLeaveMessages extends AdorufuModule implements SimpleList
             AdorufuMod.minecraft.player.sendChatMessage("> " + greet);
         }
     }
+
     private void playerJoin(String name) {
         if (AdorufuMod.minecraft.currentScreen != null) return;
         AdorufuMod.logMsg("\2477" + name + " joined.");

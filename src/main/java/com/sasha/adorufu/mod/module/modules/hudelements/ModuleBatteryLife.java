@@ -49,6 +49,7 @@ public class ModuleBatteryLife extends AdorufuModule implements SimpleListener {
     public void onTick() {
 
     }
+
     @SimpleEventHandler
     public void onBtCnge(AdorufuBatteryLevelChangedEvent e) {
         if (this.isEnabled()) {

@@ -31,29 +31,15 @@ import net.minecraft.network.play.client.CPacketKeepAlive;
  */
 @ModuleInfo(description = "Suspend packets")
 public class ModuleBlink extends AdorufuModule implements SimpleListener {
+
     public ModuleBlink() {
         super("Blink", AdorufuCategory.COMBAT, false);
     }
 
-    @Override
-    public void onEnable() {
-
-    }
-
-    @Override
-    public void onDisable() {
-
-    }
-
-    @Override
-    public void onTick() {
-
-    }
 
     @SimpleEventHandler
     public void onPacketTx(ClientPacketSendEvent e) {
         if (this.isEnabled() && !(e.getSendPacket() instanceof CPacketKeepAlive))
             e.setCancelled(true);
     }
-
 }

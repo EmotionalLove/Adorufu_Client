@@ -65,17 +65,13 @@ public class ModuleChunkCheck extends AdorufuModule implements SimpleListener {
     }
 
     @Override
-    public void onDisable() {
-
-    }
-
-    @Override
     public void onTick() {
         if (chunkDatas.isEmpty()) {
             onEnable();
         }
 
     }
+
     @Override
     public void onRender() {
         if (!this.isEnabled() || changedBlocks == null || changedBlocks.isEmpty()) return;
@@ -211,38 +207,43 @@ class ModuleChunkCheckData {
 }
 
 class ChunkCheckData implements Serializable {
+
     private String serverIp;
     final Integer chunkXPos;
     final Integer chunkZPos;
     /**
      * ugh this needs to be serialisable and i dont think blockpos is serialisable
      */
-    private ArrayList<Integer> blockX = new ArrayList<>();
-    private ArrayList<Integer> blockY = new ArrayList<>();
-    private ArrayList<Integer> blockZ = new ArrayList<>();
+    private List<Integer> blockX = new ArrayList<>();
+    private List<Integer> blockY = new ArrayList<>();
+    private List<Integer> blockZ = new ArrayList<>();
 
     public ChunkCheckData(int chunkXPos, int chunkZPos) {
         this.chunkXPos = chunkXPos;
         this.chunkZPos = chunkZPos;
     }
+
     public void add(int x, int y, int z) {
         this.blockX.add(x);
         this.blockY.add(y);
         this.blockZ.add(z);
     }
+
     public void add(BlockPos pos) {
         this.blockX.add(pos.x);
         this.blockY.add(pos.y);
         this.blockZ.add(pos.z);
     }
 
-    public final ArrayList<Integer> getXBlocks() {
+    public final List<Integer> getXBlocks() {
         return blockX;
     }
-    public final ArrayList<Integer> getYBlocks() {
+
+    public final List<Integer> getYBlocks() {
         return blockY;
     }
-    public final ArrayList<Integer> getZBlocks() {
+
+    public final List<Integer> getZBlocks() {
         return blockZ;
     }
 

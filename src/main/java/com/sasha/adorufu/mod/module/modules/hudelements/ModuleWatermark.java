@@ -35,7 +35,7 @@ public class ModuleWatermark extends AdorufuModule {
 
     @Override
     public void onEnable() {
-        
+
     }
 
     @Override

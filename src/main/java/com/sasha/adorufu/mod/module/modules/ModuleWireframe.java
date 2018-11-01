@@ -38,9 +38,4 @@ public class ModuleWireframe extends AdorufuModule {
     public void onDisable() {
         AdorufuMod.minecraft.renderGlobal.loadRenderers();
     }
-
-    @Override
-    public void onTick() {
-
-    }
 }

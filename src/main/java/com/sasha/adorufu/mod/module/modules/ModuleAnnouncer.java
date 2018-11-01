@@ -32,7 +32,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Random;
 
-
 /**
  * Created by Sasha on 11/08/2018 at 4:31 PM
  **/
@@ -46,26 +45,15 @@ public class ModuleAnnouncer extends AdorufuModule implements SimpleListener {
     private LinkedHashMap<String, Integer> blocksBrokenMap = new LinkedHashMap<>();
     private LinkedHashMap<String, Integer> blocksPlacedMap = new LinkedHashMap<>();
 
-
-
     public ModuleAnnouncer() {
         super("Announcer", AdorufuCategory.CHAT, false);
-    }
-
-    @Override
-    public void onEnable(){
-
-    }
-
-    @Override
-    public void onDisable() {
     }
 
     @Override
     public void onTick() {
         if (!this.isEnabled()) return;
         counter++;
-        if (counter > 20*15) {
+        if (counter > 20 * 15) {
             counter = 0;
             Random rand = new Random();
             boolean randBool = rand.nextBoolean();
@@ -81,8 +69,7 @@ public class ModuleAnnouncer extends AdorufuModule implements SimpleListener {
                     break;
                 }
                 blocksBrokenMap.remove(key);
-            }
-            else {
+            } else {
                 if (blocksPlacedMap.isEmpty()) {
                     return;
                 }
@@ -97,29 +84,30 @@ public class ModuleAnnouncer extends AdorufuModule implements SimpleListener {
             }
         }
     }
+
     @SimpleEventHandler
-    public void onBlockBreak(PlayerBlockBreakEvent e){
+    public void onBlockBreak(PlayerBlockBreakEvent e) {
         if (!this.isEnabled()) return;
         //logMsg("ok");
-        if (blocksBrokenMap.containsKey(e.getBlock().getLocalizedName())){
+        if (blocksBrokenMap.containsKey(e.getBlock().getLocalizedName())) {
             //logMsg("ok 1");
-            blocksBrokenMap.put(e.getBlock().getLocalizedName(), blocksBrokenMap.get(e.getBlock().getLocalizedName())+1);
+            blocksBrokenMap.put(e.getBlock().getLocalizedName(), blocksBrokenMap.get(e.getBlock().getLocalizedName()) + 1);
             return;
         }
         //logMsg("oh ok");
         blocksBrokenMap.put(e.getBlock().getLocalizedName(), 1);
     }
+
     @SimpleEventHandler
-    public void onBlockBreak(PlayerBlockPlaceEvent e){
+    public void onBlockBreak(PlayerBlockPlaceEvent e) {
         if (!this.isEnabled()) return;
         //logMsg("ok");
-        if (blocksPlacedMap.containsKey(e.getBlock().getDisplayName())){
+        if (blocksPlacedMap.containsKey(e.getBlock().getDisplayName())) {
             //logMsg("ok 1");
-            blocksPlacedMap.put(e.getBlock().getDisplayName(), blocksPlacedMap.get(e.getBlock().getDisplayName())+1);
+            blocksPlacedMap.put(e.getBlock().getDisplayName(), blocksPlacedMap.get(e.getBlock().getDisplayName()) + 1);
             return;
         }
         //logMsg("oh ok");
         blocksPlacedMap.put(e.getBlock().getDisplayName(), 1);
     }
-
 }

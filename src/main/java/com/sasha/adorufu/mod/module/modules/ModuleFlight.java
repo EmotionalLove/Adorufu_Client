@@ -28,13 +28,9 @@ import com.sasha.adorufu.mod.module.ModuleInfo;
  **/
 @ModuleInfo(description = "Allows you to fly. Only works on servers that don't have an anticheat.")
 public class ModuleFlight extends AdorufuModule {
+
     public ModuleFlight() {
         super("Flight", AdorufuCategory.MOVEMENT, false);
-    }
-
-    @Override
-    public void onEnable() {
-
     }
 
     @Override

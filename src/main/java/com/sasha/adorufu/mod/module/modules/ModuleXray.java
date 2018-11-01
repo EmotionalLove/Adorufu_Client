@@ -33,6 +33,7 @@ import java.util.ArrayList;
  **/
 @ModuleInfo(description = "Makes chosen blocks invisible so that you can find ores or other blocks.")
 public class ModuleXray extends AdorufuModule {
+
     public static ArrayList<Block> xrayBlocks = new ArrayList<>();
     private boolean wasNightVisionsOff = false;
 
@@ -56,11 +57,6 @@ public class ModuleXray extends AdorufuModule {
             wasNightVisionsOff = false;
         }
         AdorufuMod.minecraft.renderGlobal.loadRenderers();
-    }
-
-    @Override
-    public void onTick() {
-
     }
 
     public static class XrayManager {

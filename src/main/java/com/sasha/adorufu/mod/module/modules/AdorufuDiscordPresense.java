@@ -53,12 +53,10 @@ public class AdorufuDiscordPresense {
                     if (AdorufuMod.minecraft.world == null) {
                         details = "Main Menu";
                         state = "Thinking about what to do.";
-                    }
-                    else if (AdorufuMod.minecraft.getCurrentServerData() != null) {
+                    } else if (AdorufuMod.minecraft.getCurrentServerData() != null) {
                         details = "Playing Multiplayer";
                         state = "on " + AdorufuMod.minecraft.getCurrentServerData().serverIP;
-                    }
-                    else {
+                    } else {
                         details = "Playing Singleplayer";
                         state = "all alone ;-;";
                     }

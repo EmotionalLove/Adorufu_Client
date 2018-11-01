@@ -38,20 +38,9 @@ public class ModuleCraftInventory extends AdorufuModule implements SimpleListene
     }
 
     @Override
-    public void onEnable() {
-
-    }
-
-    @Override
-    public void onDisable() {
-
-    }
-
-    @Override
     public void onTick() {
         this.setSuffix(this.getModuleOptionsMap());
     }
-
 
     @SimpleEventHandler
     public void onPckCloseInv(ServerPlayerInventoryCloseEvent e) {

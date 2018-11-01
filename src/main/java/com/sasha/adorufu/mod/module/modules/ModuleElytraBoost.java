@@ -37,21 +37,12 @@ public class ModuleElytraBoost extends AdorufuModule {
     }
 
     @Override
-    public void onEnable() {
-        
-    }
-
-    @Override
-    public void onDisable() {
-
-    }
-    @Override
     public void onTick() {
         if (this.isEnabled()) {
             //this updates + displays flight speed
             if (AdorufuMod.minecraft.player.isElytraFlying()) {
                 double speed = Math.abs(AdorufuMod.minecraft.player.motionX) + Math.abs(AdorufuMod.minecraft.player.motionZ);
-                this.setSuffix(round(speed,2) + "");
+                this.setSuffix(round(speed, 2) + "");
             } else {
                 this.setSuffix("N/A");
             }
@@ -60,12 +51,13 @@ public class ModuleElytraBoost extends AdorufuModule {
             if (AdorufuMod.minecraft.player.isElytraFlying() && AdorufuMod.minecraft.gameSettings.keyBindJump.isKeyDown()) {
                 float f1 = AdorufuMod.minecraft.player.rotationYaw * 0.017453292F;
                 if ((Math.abs(AdorufuMod.minecraft.player.motionX) + Math.abs(AdorufuMod.minecraft.player.motionZ)) < limit) {
-                    AdorufuMod.minecraft.player.motionX -= (double)(MathHelper.sin(f1) * 0.15f);
-                    AdorufuMod.minecraft.player.motionZ += (double)(MathHelper.cos(f1) * 0.15f);
+                    AdorufuMod.minecraft.player.motionX -= (double) (MathHelper.sin(f1) * 0.15f);
+                    AdorufuMod.minecraft.player.motionZ += (double) (MathHelper.cos(f1) * 0.15f);
                 }
             }
         }
     }
+
     private static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
 

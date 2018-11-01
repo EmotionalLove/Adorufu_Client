@@ -46,14 +46,6 @@ public class ModuleDesktopNotifications extends AdorufuModule implements SimpleL
     }
 
     @Override
-    public void onEnable() {
-    }
-
-    @Override
-    public void onDisable() {
-    }
-
-    @Override
     public void onTick() {
         this.setSuffix(this.getModuleOptionsMap());
     }
@@ -65,18 +57,17 @@ public class ModuleDesktopNotifications extends AdorufuModule implements SimpleL
             AdorufuMod.TRAY_MANAGER.trayIcon.displayMessage("Disconnected", ((GuiDisconnected) e.getScreen()).message.getUnformattedText().replaceAll("§.", ""), TrayIcon.MessageType.WARNING);
         }
     }
+
     @SimpleEventHandler
     public void onChatRx(ClientPacketRecieveEvent e) {
         if (!this.isEnabled() || this.getOption("Chat mentions")) return;
         if (e.getRecievedPacket() instanceof SPacketChat) {
-            SPacketChat pck = (SPacketChat) e.getRecievedPacket();
+            SPacketChat pck = e.getRecievedPacket();
             if (!Display.isActive() && pck.getChatComponent().getUnformattedText().contains(AdorufuMod.minecraft.player.getName())) {
                 AdorufuMod.TRAY_MANAGER.trayIcon.displayMessage("Mentioned in Chat",
                         pck.getChatComponent().getUnformattedText(),
                         TrayIcon.MessageType.WARNING);
-
             }
         }
-
     }
 }

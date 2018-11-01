@@ -48,16 +48,6 @@ public class ModuleClientIgnore extends AdorufuModule implements SimpleListener 
     }
 
     @Override
-    public void onEnable() {
-
-    }
-
-    @Override
-    public void onDisable() {
-
-    }
-
-    @Override
     public void onTick() {
         this.setSuffix(this.getModuleOptionsMap());
         if (this.isEnabled()) {
@@ -92,7 +82,7 @@ public class ModuleClientIgnore extends AdorufuModule implements SimpleListener 
                         msg1 = msg1.replace("\"", "");
                         msg1 = msg1.replace("'", "");
                         if (msg1.toLowerCase().startsWith(s.toLowerCase()) ||
-                        msg1.toLowerCase().endsWith(s.toLowerCase())) {
+                                msg1.toLowerCase().endsWith(s.toLowerCase())) {
                             e.setCancelled(true);
                             return;
                         }

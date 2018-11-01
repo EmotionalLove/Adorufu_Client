@@ -29,24 +29,16 @@ import net.minecraft.util.MovementInput;
 
 @ModuleInfo(description = "Speedhack for ridable animals")
 public class ModuleEntitySpeed extends AdorufuModule {
+
     public static double speed;
+
     public ModuleEntitySpeed() {
         super("EntitySpeed", AdorufuCategory.MOVEMENT, false);
     }
 
     @Override
-    public void onEnable() {
-
-    }
-
-    @Override
-    public void onDisable() {
-
-    }
-
-    @Override
     public void onTick() {
-        if(!this.isEnabled())
+        if (!this.isEnabled())
             return;
         this.setSuffix(speed + "");
         if (AdorufuMod.minecraft.player.ridingEntity != null) {
@@ -61,6 +53,7 @@ public class ModuleEntitySpeed extends AdorufuModule {
             }
         }
     }
+
     private static void speedEntity(Entity entity) {
         if (entity instanceof EntityLlama) {
             entity.rotationYaw = AdorufuMod.minecraft.player.rotationYaw;
@@ -73,8 +66,7 @@ public class ModuleEntitySpeed extends AdorufuModule {
         if ((forward == 0.0D) && (strafe == 0.0D)) {
             entity.motionX = 0.0D;
             entity.motionZ = 0.0D;
-        }
-        else {
+        } else {
             if (forward != 0.0D) {
                 if (strafe > 0.0D) {
                     yaw += (forward > 0.0D ? -45 : 45);

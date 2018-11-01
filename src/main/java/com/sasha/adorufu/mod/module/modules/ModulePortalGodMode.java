@@ -28,23 +28,9 @@ import net.minecraft.network.play.client.CPacketConfirmTeleport;
 
 @ModuleInfo(description = "Become invinsible after using a nether portal")
 public class ModulePortalGodMode extends AdorufuModule implements SimpleListener {
+
     public ModulePortalGodMode() {
         super("PortalGodMode", AdorufuCategory.MOVEMENT, false);
-    }
-
-    @Override
-    public void onEnable() {
-
-    }
-
-    @Override
-    public void onDisable() {
-
-    }
-
-    @Override
-    public void onTick() {
-
     }
 
     @SimpleEventHandler

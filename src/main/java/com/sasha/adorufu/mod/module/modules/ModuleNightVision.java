@@ -33,19 +33,4 @@ public class ModuleNightVision extends AdorufuModule {
     public ModuleNightVision() {
         super("NightVision", AdorufuCategory.RENDER, false);
     }
-
-    @Override
-    public void onEnable() {
-
-    }
-
-    @Override
-    public void onDisable() {
-
-    }
-
-    @Override
-    public void onTick() {
-
-    }
 }

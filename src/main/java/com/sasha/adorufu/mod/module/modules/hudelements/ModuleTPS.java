@@ -42,7 +42,7 @@ public class ModuleTPS extends AdorufuModule {
     }
 
     @Override
-    public void onTick(){
+    public void onTick() {
 
     }
 }

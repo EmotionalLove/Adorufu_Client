@@ -31,25 +31,13 @@ public class ModuleWaypoints extends AdorufuModule {
 
     public static int i = 0;
 
-
     public ModuleWaypoints() {
         super("Waypoints", AdorufuCategory.RENDER, false);
-    }
-
-
-    @Override
-    public void onEnable() {
-
     }
 
     @Override
     public void onDisable() {
         i = 0;
-    }
-
-    @Override
-    public void onTick() {
-
     }
 
     @Override

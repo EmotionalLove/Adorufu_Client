@@ -32,24 +32,11 @@ import net.minecraft.util.math.BlockPos;
 
 @ModuleInfo(description = "Middle click a block to add it to xray")
 public class ModuleMiddleClickBlock extends AdorufuModule implements SimpleListener {
+
     public ModuleMiddleClickBlock() {
         super("MiddleClickBlock", AdorufuCategory.MISC, false);
     }
 
-    @Override
-    public void onEnable() {
-
-    }
-
-    @Override
-    public void onDisable() {
-
-    }
-
-    @Override
-    public void onTick() {
-
-    }
     @SimpleEventHandler
     public void onMiddleClick(ClientMouseClickEvent.Middle e) {
         if (AdorufuMod.minecraft.world.getBlockState(AdorufuMod.minecraft.objectMouseOver.getBlockPos()).getBlock().material == Material.AIR) {
@@ -67,6 +54,7 @@ public class ModuleMiddleClickBlock extends AdorufuModule implements SimpleListe
         refreshXray();
         AdorufuMod.logMsg(false, b.getLocalizedName() + " removed.");
     }
+
     private static void refreshXray() {
         if (Manager.Module.getModule("X-Ray").isEnabled()) {
             AdorufuMod.minecraft.renderGlobal.loadRenderers();

@@ -31,18 +31,9 @@ import net.minecraft.tileentity.*;
  **/
 @ModuleInfo(description = "Draws an outline around storage containers")
 public class ModuleStorageESP extends AdorufuModule {
+
     public ModuleStorageESP() {
         super("StorageESP", AdorufuCategory.RENDER, false);
-    }
-
-    @Override
-    public void onEnable() {
-
-    }
-
-    @Override
-    public void onDisable() {
-
     }
 
     @Override
@@ -81,12 +72,6 @@ public class ModuleStorageESP extends AdorufuModule {
             }
         }
         //todo int x = AdorufuMod.minecraft.world.loadedTileEntityList.stream().filter(tile -> tile. )
-        this.setSuffix(i+"");
+        this.setSuffix(i + "");
     }
-
-    @Override
-    public void onTick() {
-
-    }
-
 }

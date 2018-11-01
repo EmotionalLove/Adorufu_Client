@@ -30,6 +30,7 @@ import com.sasha.eventsys.SimpleListener;
  */
 @ModuleInfo(description = "Reduce or completely ignore knockback")
 public class ModuleKnockbackSuppress extends AdorufuModule implements SimpleListener {
+
     public ModuleKnockbackSuppress() {
         super("KnockbackSuppress", AdorufuCategory.COMBAT, false, true, true);
         this.addOption("Ignore", true);
@@ -37,19 +38,10 @@ public class ModuleKnockbackSuppress extends AdorufuModule implements SimpleList
     }
 
     @Override
-    public void onEnable() {
-
-    }
-
-    @Override
-    public void onDisable() {
-
-    }
-
-    @Override
     public void onTick() {
         this.setSuffix(this.getModuleOptionsMap());
     }
+
     @SimpleEventHandler
     public void onPlayerKnockBack(PlayerKnockbackEvent e) {
         if (!this.isEnabled()) return;
@@ -57,8 +49,8 @@ public class ModuleKnockbackSuppress extends AdorufuModule implements SimpleList
             e.setCancelled(true);
             return;
         }
-        e.setMotionX(e.getMotionX()/3);
-        e.setMotionY(e.getMotionY()/3);
-        e.setMotionZ(e.getMotionZ()/3);
+        e.setMotionX(e.getMotionX() / 3.0);
+        e.setMotionY(e.getMotionY() / 3.0);
+        e.setMotionZ(e.getMotionZ() / 3.0);
     }
 }

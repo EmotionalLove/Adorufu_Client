@@ -24,22 +24,8 @@ import com.sasha.adorufu.mod.module.ModuleInfo;
 
 @ModuleInfo(description = "Allow the tablist to fit more players")
 public class ModuleExtendedTablist extends AdorufuModule {
+
     public ModuleExtendedTablist() {
         super("ExtendedTablist", AdorufuCategory.RENDER, false);
-    }
-
-    @Override
-    public void onEnable() {
-
-    }
-
-    @Override
-    public void onDisable() {
-
-    }
-
-    @Override
-    public void onTick() {
-
     }
 }

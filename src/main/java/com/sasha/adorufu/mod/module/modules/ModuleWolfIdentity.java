@@ -30,19 +30,8 @@ import net.minecraft.entity.passive.EntityTameable;
 @ModuleInfo(description = "Show who tamed a tameable entity")
 public class ModuleWolfIdentity extends AdorufuModule {
 
-
     public ModuleWolfIdentity() {
         super("TamedIdentity", AdorufuCategory.RENDER, false);
-    }
-
-    @Override
-    public void onEnable() {
-
-    }
-
-    @Override
-    public void onDisable() {
-
     }
 
     @Override

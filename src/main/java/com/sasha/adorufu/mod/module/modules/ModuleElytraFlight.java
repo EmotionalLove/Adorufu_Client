@@ -35,10 +35,7 @@ public class ModuleElytraFlight extends AdorufuModule {
             AdorufuMod.minecraft.player.capabilities.isFlying = true;
         }
     }
-    @Override
-    public void onEnable() {
-        //
-    }
+
     @Override
     public void onDisable() {
         AdorufuMod.minecraft.player.capabilities.isFlying = false;

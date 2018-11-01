@@ -27,21 +27,8 @@ import com.sasha.adorufu.mod.module.ModuleInfo;
  */
 @ModuleInfo(description = "Limits the framerate to 5FPS when the game isn't in focus.")
 public class ModuleCPUControl extends AdorufuModule {
+
     public ModuleCPUControl() {
         super("CPUControl", AdorufuCategory.MISC, false);
-    }
-
-    @Override
-    public void onEnable() {
-
-    }
-
-    @Override
-    public void onDisable() {
-
-    }
-
-    @Override
-    public void onTick() {
     }
 }

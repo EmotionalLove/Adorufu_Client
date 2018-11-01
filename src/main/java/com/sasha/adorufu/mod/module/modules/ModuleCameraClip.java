@@ -24,22 +24,8 @@ import com.sasha.adorufu.mod.module.ModuleInfo;
 
 @ModuleInfo(description = "Don't move the camera closer in 3rd person view")
 public class ModuleCameraClip extends AdorufuModule {
+
     public ModuleCameraClip() {
         super("CameraClip", AdorufuCategory.RENDER, false);
-    }
-
-    @Override
-    public void onEnable() {
-
-    }
-
-    @Override
-    public void onDisable() {
-
-    }
-
-    @Override
-    public void onTick() {
-
     }
 }

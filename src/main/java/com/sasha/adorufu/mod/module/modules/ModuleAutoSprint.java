@@ -25,18 +25,9 @@ import com.sasha.adorufu.mod.module.ModuleInfo;
 
 @ModuleInfo(description = "Automatically sprint when walking")
 public class ModuleAutoSprint extends AdorufuModule {
+
     public ModuleAutoSprint() {
         super("AutoSprint", AdorufuCategory.MOVEMENT, false);
-    }
-
-    @Override
-    public void onEnable() {
-
-    }
-
-    @Override
-    public void onDisable() {
-
     }
 
     @Override

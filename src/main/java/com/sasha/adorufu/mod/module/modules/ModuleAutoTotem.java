@@ -32,18 +32,9 @@ import net.minecraft.item.ItemStack;
  **/
 @ModuleInfo(description = "Automatically moves a totem into your offhand if it's empty")
 public class ModuleAutoTotem extends AdorufuModule {
+
     public ModuleAutoTotem() {
         super("AutoTotem", AdorufuCategory.COMBAT, false);
-    }
-
-    @Override
-    public void onEnable() {
-
-    }
-
-    @Override
-    public void onDisable() {
-
     }
 
     @Override
@@ -58,7 +49,7 @@ public class ModuleAutoTotem extends AdorufuModule {
                 i++;
             }
         }
-        this.setSuffix(i +"");
+        this.setSuffix(i + "");
         if (offhand.getItem() != Items.TOTEM_OF_UNDYING) {
             for (int x = 9; x <= 44; x++) {
                 ItemStack stack = AdorufuMod.minecraft.player.inventory.getStackInSlot(x);

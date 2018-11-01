@@ -32,29 +32,17 @@ import net.minecraft.network.play.server.SPacketSoundEffect;
  **/
 @ModuleInfo(description = "Automated fishing, for when you're not at your computer.")
 public class ModuleAFKFish extends AdorufuModule implements SimpleListener {
-    public ModuleAFKFish(){
+
+    public ModuleAFKFish() {
         super("AFKFish", AdorufuCategory.MISC, false);
     }
-    @Override
-    public void onEnable() {
 
-    }
-
-    @Override
-    public void onDisable() {
-
-    }
-
-    @Override
-    public void onTick() {
-
-    }
     @SimpleEventHandler
     public void onSplash(ClientPacketRecieveEvent e) {
         if (!this.isEnabled()) return;
         if (e.getRecievedPacket() instanceof SPacketSoundEffect) {
             SPacketSoundEffect pck = (SPacketSoundEffect) e.getRecievedPacket();
-            if(pck.getSound().getSoundName().toString().equalsIgnoreCase("minecraft:entity.bobber.splash")){
+            if (pck.getSound().getSoundName().toString().equalsIgnoreCase("minecraft:entity.bobber.splash")) {
                 new Thread(() -> {
                     AdorufuMod.minecraft.rightClickMouse();
                     try {

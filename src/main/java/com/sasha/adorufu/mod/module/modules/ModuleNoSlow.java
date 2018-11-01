@@ -31,20 +31,11 @@ import com.sasha.eventsys.SimpleListener;
  **/
 @ModuleInfo(description = "Don't slow down whilst eating.") //todo
 public class ModuleNoSlow extends AdorufuModule implements SimpleListener {
+
     public ModuleNoSlow() {
         super("NoSlow", AdorufuCategory.MOVEMENT, false, true, true);
         this.addOption("NCP", true);
         this.addOption("AAC", false);
-    }
-
-    @Override
-    public void onEnable() {
-
-    }
-
-    @Override
-    public void onDisable() {
-
     }
 
     @Override

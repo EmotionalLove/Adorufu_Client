@@ -48,16 +48,6 @@ public class ModuleChunkTrace extends AdorufuModule implements SimpleListener {
     }
 
     @Override
-    public void onEnable() {
-
-    }
-
-    @Override
-    public void onDisable() {
-
-    }
-
-    @Override
     public void onTick() {
         LinkedHashMap<String, Boolean> suffixMap = new LinkedHashMap<>();
         suffixMap.put("Chunks", this.getOption("ChunkESP"));
@@ -68,14 +58,14 @@ public class ModuleChunkTrace extends AdorufuModule implements SimpleListener {
     @Override
     public void onRender() {
         if (this.isEnabled() && this.getOption("ChunkESP")) {
-                for (Chunk chunk : chunks) {
-                    int x, z;
-                    x = chunk.x * 16;
-                    z = chunk.z * 16;
-                    double maxY = AdorufuMod.minecraft.player.posY + 25;
-                    int y = 0;
-                    chunkESP(x, y, z, 1.0f, 0.0f, 0.0f, 0.5f, maxY);
-                }
+            for (Chunk chunk : chunks) {
+                int x, z;
+                x = chunk.x * 16;
+                z = chunk.z * 16;
+                double maxY = AdorufuMod.minecraft.player.posY + 25;
+                int y = 0;
+                chunkESP(x, y, z, 1.0f, 0.0f, 0.0f, 0.5f, maxY);
+            }
         }
     }
 

@@ -34,7 +34,9 @@ import java.util.LinkedHashMap;
 @ModuleInfo(description = "Highlight blocks that might've not been mined on the server's side.")
 public class ModuleGhostBlockWarning extends AdorufuModule implements SimpleListener {
 
-    /** dont ask why this variable is named this it was like this already HUSH PLS*/
+    /**
+     * dont ask why this variable is named this it was like this already HUSH PLS
+     */
     private static LinkedHashMap<Coordinate, Boolean> BlakeIsMyBoyfriendMap = new LinkedHashMap<>();
 
     public ModuleGhostBlockWarning() {
@@ -42,30 +44,17 @@ public class ModuleGhostBlockWarning extends AdorufuModule implements SimpleList
     }
 
     @Override
-    public void onEnable() {
-
-    }
-
-    @Override
-    public void onDisable() {
-
-    }
-
-    @Override
-    public void onTick() {
-
-    }
-    @Override
-    public void onRender(){
-        if (!this.isEnabled()){
+    public void onRender() {
+        if (!this.isEnabled()) {
             return;
         }
-        for (HashMap.Entry<Coordinate, Boolean> wow : BlakeIsMyBoyfriendMap.entrySet()){
-            if(!wow.getValue()){
+        for (HashMap.Entry<Coordinate, Boolean> wow : BlakeIsMyBoyfriendMap.entrySet()) {
+            if (!wow.getValue()) {
                 AdorufuRender.ghostBlock(wow.getKey().getX(), wow.getKey().getY(), wow.getKey().getZ(), 1.0f, 0.0f, 0.0f, 0.5f);
             }
         }
     }
+
     @SimpleEventHandler
     public void onBlockBreak(PlayerBlockBreakEvent e) {
         if (e.getBlock().canHarvestBlock(AdorufuMod.minecraft.world, e.getBlockPos(), AdorufuMod.minecraft.player)) {
@@ -77,11 +66,12 @@ public class ModuleGhostBlockWarning extends AdorufuModule implements SimpleList
     public void onItemDrop(ClientItemSpawnEvent e) {
         int[] coords = e.getCoordinate();
         for (HashMap.Entry<Coordinate, Boolean> fugg : BlakeIsMyBoyfriendMap.entrySet()) {
-            if (!fugg.getValue() && between(fugg.getKey().getX(), coords[0], 0.25d, 0.25d) && between(fugg.getKey().getY(),coords[1], 0.25d, 0.25d) && between(fugg.getKey().getZ(),coords[2], 0.25d, 0.25d)){
+            if (!fugg.getValue() && between(fugg.getKey().getX(), coords[0], 0.25d, 0.25d) && between(fugg.getKey().getY(), coords[1], 0.25d, 0.25d) && between(fugg.getKey().getZ(), coords[2], 0.25d, 0.25d)) {
                 BlakeIsMyBoyfriendMap.put(fugg.getKey(), true);
             }
         }
     }
+
     private static boolean between(int i, int coord, double min, double max) {
         if (coord < 0) {
             coord--;
@@ -89,8 +79,9 @@ public class ModuleGhostBlockWarning extends AdorufuModule implements SimpleList
         return i >= (coord - min) && i <= (coord + max);
     }
 }
+
 class Coordinate {
-    private int x,y,z,dim;
+    private int x, y, z, dim;
 
     public Coordinate(int x, int y, int z, int dim) {
         this.x = x;
@@ -110,6 +101,7 @@ class Coordinate {
     public int getZ() {
         return z;
     }
+
     public int getDim() {
         return dim;
     }

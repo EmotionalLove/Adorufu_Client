@@ -30,27 +30,18 @@ import net.minecraft.client.gui.GuiScreen;
  **/
 @ModuleInfo(description = "Automatically respawn upon death")
 public class ModuleAutoRespawn extends AdorufuModule {
+
     public ModuleAutoRespawn() {
         super("AutoRespawn", AdorufuCategory.COMBAT, false);
     }
 
     @Override
-    public void onEnable() {
-
-    }
-
-    @Override
-    public void onDisable() {
-
-    }
-
-    @Override
     public void onTick() {
-        if(!this.isEnabled())
+        if (!this.isEnabled())
             return;
-        if(AdorufuMod.minecraft.currentScreen instanceof GuiGameOver) {
+        if (AdorufuMod.minecraft.currentScreen instanceof GuiGameOver) {
             AdorufuMod.minecraft.player.respawnPlayer();
-            AdorufuMod.minecraft.displayGuiScreen((GuiScreen)null);
+            AdorufuMod.minecraft.displayGuiScreen((GuiScreen) null);
         }
     }
 }

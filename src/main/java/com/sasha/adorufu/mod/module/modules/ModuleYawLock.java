@@ -33,16 +33,6 @@ public class ModuleYawLock extends AdorufuModule {
     }
 
     @Override
-    public void onEnable() {
-
-    }
-
-    @Override
-    public void onDisable() {
-
-    }
-
-    @Override
     public void onTick() {
         if (this.isEnabled()) {
             AdorufuMod.minecraft.player.rotationYaw = yawDegrees;

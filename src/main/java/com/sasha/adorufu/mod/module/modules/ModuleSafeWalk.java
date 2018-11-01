@@ -22,22 +22,8 @@ import com.sasha.adorufu.mod.module.AdorufuCategory;
 import com.sasha.adorufu.mod.module.AdorufuModule;
 
 public class ModuleSafeWalk extends AdorufuModule {
+
     public ModuleSafeWalk() {
         super("SafeWalk", AdorufuCategory.MOVEMENT, false);
-    }
-
-    @Override
-    public void onEnable() {
-
-    }
-
-    @Override
-    public void onDisable() {
-
-    }
-
-    @Override
-    public void onTick() {
-
     }
 }

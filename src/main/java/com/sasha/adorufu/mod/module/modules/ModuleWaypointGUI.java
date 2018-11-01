@@ -31,23 +31,14 @@ import com.sasha.adorufu.mod.module.PostToggleExec;
 @PostToggleExec
 @ModuleInfo(description = "Displays the WaypointGUI")
 public class ModuleWaypointGUI extends AdorufuModule {
+
     public ModuleWaypointGUI() {
         super("WaypointGUI", AdorufuCategory.GUI, false);
     }
 
     @Override
-    public void onEnable(){
+    public void onEnable() {
         AdorufuMod.minecraft.displayGuiScreen(new WaypointGUI());
         this.toggle();
-    }
-
-    @Override
-    public void onDisable() {
-
-    }
-
-    @Override
-    public void onTick() {
-
     }
 }

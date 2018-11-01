@@ -30,30 +30,18 @@ import net.minecraft.util.text.TextComponentString;
 
 @ModuleInfo(description = "Hides your name on-screen")
 public class ModuleNameProtect extends AdorufuModule implements SimpleListener {
+
     public ModuleNameProtect() {
         super("NameRedact", AdorufuCategory.RENDER, false);
     }
 
-    @Override
-    public void onEnable() {
-
-    }
-
-    @Override
-    public void onDisable() {
-
-    }
-
-    @Override
-    public void onTick() {
-
-    }
     @SimpleEventHandler
     public void onChatRx(ClientPacketRecieveEvent e) {
         if (!this.isEnabled()) return;
         if (e.getRecievedPacket() instanceof SPacketChat) {
-            SPacketChat chat = (SPacketChat) e.getRecievedPacket();
-            if (!chat.getChatComponent().getUnformattedComponentText().contains(AdorufuMod.minecraft.player.getName())) return;
+            SPacketChat chat = e.getRecievedPacket();
+            if (!chat.getChatComponent().getUnformattedComponentText().contains(AdorufuMod.minecraft.player.getName()))
+                return;
             String str = chat.chatComponent.getFormattedText().replace(AdorufuMod.minecraft.player.getName(), "[redacted]");
             chat.chatComponent = new TextComponentString(str);
         }

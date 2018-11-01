@@ -32,20 +32,11 @@ import net.minecraft.network.play.client.CPacketPlayer;
  **/
 @ModuleInfo(description = "Makes your hunger last longer while sprinting/jumping/etc")
 public class ModuleAntiHunger extends AdorufuModule implements SimpleListener {
+
     public ModuleAntiHunger() {
         super("AntiHunger", AdorufuCategory.MOVEMENT, false, true, true);
         this.addOption("ncp", true);
         this.addOption("aac", false);
-    }
-
-    @Override
-    public void onEnable() {
-
-    }
-
-    @Override
-    public void onDisable() {
-
     }
 
     @Override
@@ -58,9 +49,10 @@ public class ModuleAntiHunger extends AdorufuModule implements SimpleListener {
             AdorufuMod.minecraft.getConnection().sendPacket(new CPacketPlayer(false));
         }
     }
+
     @SimpleEventHandler
     public void packetSent(ClientPacketSendEvent e) {
-        if (!this.isEnabled()){
+        if (!this.isEnabled()) {
             return;
         }
         if (AdorufuMod.minecraft.player.motionY > 0.1 && this.getOption("aac")) {

@@ -33,21 +33,13 @@ import net.minecraft.util.math.BlockPos;
  * Created by Sasha at 3:55 PM on 9/23/2018
  */
 public class ModuleAutoWalk extends AdorufuModule {
+
     private static int timer = 0;
+
     public ModuleAutoWalk() {
         super("AutoWalk", AdorufuCategory.MOVEMENT, false, true, true);
         this.addOption("Normal", true);
         this.addOption("Pathfinder", false);
-    }
-
-    @Override
-    public void onEnable() {
-
-    }
-
-    @Override
-    public void onDisable() {
-
     }
 
     @Override
@@ -70,8 +62,7 @@ public class ModuleAutoWalk extends AdorufuModule {
                         WalkThread wt = new WalkThread("AutoWalker", oldRot, wasToggled);
                         wt.start();
                         timer = 0;
-                    }
-                    else if (!isObstacleThereManual(AdorufuMod.minecraft.player.rotationYaw - 90)) {
+                    } else if (!isObstacleThereManual(AdorufuMod.minecraft.player.rotationYaw - 90)) {
                         boolean wasToggled = false;
                         if (Manager.Module.getModule(ModuleYawLock.class).isEnabled()) {
                             Manager.Module.getModule(ModuleYawLock.class).toggle();
@@ -82,8 +73,7 @@ public class ModuleAutoWalk extends AdorufuModule {
                         WalkThread wt = new WalkThread("AutoWalker", oldRot, wasToggled);
                         wt.start();
                         timer = 0;
-                    }
-                    else {
+                    } else {
                         AdorufuMod.logWarn(false, "Can't evade obstacle, manual input needed!");
                     }
                 }
@@ -98,6 +88,7 @@ public class ModuleAutoWalk extends AdorufuModule {
             }
         }
     }
+
     private static boolean isBlockBlockingInFront() {
         Direction dir = AdorufuMath.getCardinalDirection(AdorufuMod.minecraft.player.rotationYaw);
         if (dir == Direction.posX) {
@@ -118,6 +109,7 @@ public class ModuleAutoWalk extends AdorufuModule {
         }
         return false;
     }
+
     private static boolean isHoleInFront() {
         Direction dir = AdorufuMath.getCardinalDirection(AdorufuMod.minecraft.player.rotationYaw);
         if (dir == Direction.posX) {
@@ -142,6 +134,7 @@ public class ModuleAutoWalk extends AdorufuModule {
         }
         return false;
     }
+
     private static boolean isObstacleThere() {
         Direction dir = AdorufuMath.getCardinalDirection(AdorufuMod.minecraft.player.rotationYaw);
         if (dir == Direction.posX) {
@@ -166,6 +159,7 @@ public class ModuleAutoWalk extends AdorufuModule {
         }
         return false;
     }
+
     private static boolean isObstacleThereManual(float yaw) {
         Direction dir = AdorufuMath.getCardinalDirection(yaw);
         if (dir == Direction.posX) {
@@ -191,7 +185,9 @@ public class ModuleAutoWalk extends AdorufuModule {
         return false;
     }
 }
+
 class WalkThread implements Runnable {
+
     private Thread t;
     private String threadName;
     private float oldYaw;
@@ -199,7 +195,7 @@ class WalkThread implements Runnable {
 
     public WalkThread(String name, float oldYaw, boolean needsYaw) {
         threadName = name;
-        System.out.println("Creating " +  threadName);
+        System.out.println("Creating " + threadName);
         //this.args = args;
         this.oldYaw = oldYaw;
         this.needsYaw = needsYaw;
@@ -217,7 +213,8 @@ class WalkThread implements Runnable {
             Manager.Module.getModule(ModuleYawLock.class).toggle();
         }
     }
-    public void start () {
+
+    public void start() {
         //System.out.println("Starting " +  threadName);
         if (t == null) {
             t = new Thread(this, threadName);

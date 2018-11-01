@@ -37,16 +37,6 @@ public class ModuleAutoEat extends AdorufuModule {
     }
 
     @Override
-    public void onEnable() {
-
-    }
-
-    @Override
-    public void onDisable() {
-
-    }
-
-    @Override
     public void onTick() {
         if (!this.isEnabled()) return;
         this.setSuffix(this.getModuleOptionsMap());
@@ -59,8 +49,7 @@ public class ModuleAutoEat extends AdorufuModule {
                         if (AdorufuMod.minecraft.player.inventory.getStackInSlot(s).getItem() == Items.GOLDEN_APPLE) {
                             continue;
                         }
-                    }
-                    else if (this.getOption("priority gapple") && !checked) {
+                    } else if (this.getOption("priority gapple") && !checked) {
                         if (AdorufuMod.minecraft.player.inventory.getStackInSlot(s).getItem() != Items.GOLDEN_APPLE) {
                             continue;
                         }

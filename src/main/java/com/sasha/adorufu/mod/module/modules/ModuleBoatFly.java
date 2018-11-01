@@ -28,21 +28,12 @@ import net.minecraft.entity.item.EntityBoat;
  * Created by Sasha at 3:48 PM on 9/24/2018
  */
 public class ModuleBoatFly extends AdorufuModule {
+
     public ModuleBoatFly() {
         super("BoatFly", AdorufuCategory.MOVEMENT, false, true);
         this.addOption("yawlock", false);
         this.addOption("gravity", true);
         this.addOption("all entities", false);
-    }
-
-    @Override
-    public void onEnable() {
-
-    }
-
-    @Override
-    public void onDisable() {
-
     }
 
     @Override
@@ -55,8 +46,7 @@ public class ModuleBoatFly extends AdorufuModule {
                 if (e == null) return;
                 if (!this.getOption("gravity")) {
                     e.setNoGravity(true);
-                }
-                else {
+                } else {
                     e.setNoGravity(false);
                 }
                 if (this.getOption("yawlock")) e.rotationYaw = (AdorufuMod.minecraft.player.rotationYaw);

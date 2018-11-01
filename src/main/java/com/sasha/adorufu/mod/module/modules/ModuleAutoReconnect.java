@@ -33,16 +33,6 @@ public class ModuleAutoReconnect extends AdorufuModule {
     }
 
     @Override
-    public void onEnable() {
-
-    }
-
-    @Override
-    public void onDisable() {
-
-    }
-
-    @Override
     public void onTick() {
         if (AdorufuMod.minecraft.getCurrentServerData() == null) return;
         serverData = AdorufuMod.minecraft.getCurrentServerData();

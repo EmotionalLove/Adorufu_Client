@@ -27,24 +27,11 @@ import com.sasha.eventsys.SimpleListener;
 
 @ModuleInfo(description = "Hide the annoying 1st person fire overlay")
 public class ModuleAntiFireOverlay extends AdorufuModule implements SimpleListener {
+
     public ModuleAntiFireOverlay() {
         super("AntiFireOverlay", AdorufuCategory.RENDER, false);
     }
 
-    @Override
-    public void onEnable() {
-
-    }
-
-    @Override
-    public void onDisable() {
-
-    }
-
-    @Override
-    public void onTick() {
-
-    }
     @SimpleEventHandler
     public void onFireRender(ClientRenderFireOverlayEvent e) {
         if (this.isEnabled()) e.setCancelled(true);

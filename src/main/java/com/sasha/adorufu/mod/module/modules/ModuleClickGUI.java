@@ -36,18 +36,8 @@ public class ModuleClickGUI extends AdorufuModule {
     }
 
     @Override
-    public void onEnable(){
+    public void onEnable() {
         AdorufuMod.minecraft.displayGuiScreen(new AdorufuClickGUI());
         this.toggle();
-    }
-
-    @Override
-    public void onDisable() {
-
-    }
-
-    @Override
-    public void onTick() {
-
     }
 }

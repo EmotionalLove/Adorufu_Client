@@ -25,28 +25,19 @@ import com.sasha.adorufu.mod.module.ModuleInfo;
 
 @ModuleInfo(description = "Don't get kicked for being AFK")
 public class ModuleAntiAFK extends AdorufuModule {
-    private int timer=0;
+
+    private int ticks = 0;
+
     public ModuleAntiAFK() {
         super("AntiAFK", AdorufuCategory.MISC, false);
     }
 
     @Override
-    public void onEnable() {
-
-    }
-
-    @Override
-    public void onDisable() {
-
-    }
-
-    @Override
     public void onTick() {
         if (this.isEnabled()) {
-            timer++;
-            if (timer >= 20) {
+            if (++ticks >= 20) {
                 AdorufuMod.minecraft.clickMouse();
-                timer = 0;
+                ticks = 0;
             }
         }
     }

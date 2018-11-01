@@ -42,21 +42,12 @@ import static com.sasha.adorufu.mod.module.modules.ModuleKillaura.rotateTowardsE
  **/
 @ModuleInfo(description = "Automatically hit nearby crystals")
 public class ModuleCrystalAura extends AdorufuModule {
+
     public ModuleCrystalAura() {
         super("CrystalAura", AdorufuCategory.COMBAT, false, true, true);
         this.addOption("aura", true);
         this.addOption("auto", false); // will not hit crystals if a friended player is nearby, or if you're vulnerable to dying.
         this.addOption("auto all", false); // will hit crystals no matter what
-    }
-
-    @Override
-    public void onEnable() {
-
-    }
-
-    @Override
-    public void onDisable() {
-
     }
 
     @Override

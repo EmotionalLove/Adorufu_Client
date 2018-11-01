@@ -56,11 +56,6 @@ public class ModuleAutoIgnore extends AdorufuModule implements SimpleListener {
     }
 
     @Override
-    public void onDisable() {
-
-    }
-
-    @Override
     public void onTick() {
         handleIgnoring();
         clock++;
@@ -73,6 +68,7 @@ public class ModuleAutoIgnore extends AdorufuModule implements SimpleListener {
             clock = 0;
         }
     }
+
     @SimpleEventHandler
     public void onChat(ClientPacketRecieveEvent e) {
         if (this.isEnabled() && e.getRecievedPacket() instanceof SPacketChat) {
@@ -84,23 +80,22 @@ public class ModuleAutoIgnore extends AdorufuModule implements SimpleListener {
                 String message = string.replaceAll("<*?.> ", "").replaceAll("\\[*?.]", "");
                 if (message.contains(lastMessage) && !spamViolationMap.containsKey(name)) {
                     spamViolationMap.put(name, 10);
-                }
-                else if (message.contains(lastMessage) && spamViolationMap.containsKey(name)) {
+                } else if (message.contains(lastMessage) && spamViolationMap.containsKey(name)) {
                     spamViolationMap.put(name, spamViolationMap.get(name) + 20);
-                }
-                else if (!spamViolationMap.containsKey(name)) {
+                } else if (!spamViolationMap.containsKey(name)) {
                     spamViolationMap.put(name, 1);
-                }
-                else {
+                } else {
                     spamViolationMap.put(name, spamViolationMap.get(name) + 5);
                 }
                 lastMessage = message;
             }
         }
     }
+
     protected static String stripColours(String txt) {
         return txt.replaceAll("\247" + ".", "");
     }
+
     private static void handleIgnoring() {
         for (HashMap.Entry<String, Integer> entry : spamViolationMap.entrySet()) {
             if (entry.getValue() > 40 && !ModuleClientIgnore.ignorelist.contains(entry.getKey())) {

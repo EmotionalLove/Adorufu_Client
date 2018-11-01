@@ -32,18 +32,9 @@ import net.minecraft.util.NonNullList;
 
 @ModuleInfo(description = "View the contents of shulker boxes being held by other nearby players")
 public class ModuleShulkerSpy extends AdorufuModule {
+
     public ModuleShulkerSpy() {
         super("ShulkerSpy", AdorufuCategory.RENDER, false);
-    }
-
-    @Override
-    public void onEnable() {
-
-    }
-
-    @Override
-    public void onDisable() {
-
     }
 
     /**
