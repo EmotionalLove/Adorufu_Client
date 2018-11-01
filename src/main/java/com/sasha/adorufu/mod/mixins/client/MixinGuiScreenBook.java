@@ -81,7 +81,7 @@ public class MixinGuiScreenBook extends MixinGuiScreen {
                     this.book.setTagInfo("pages", this.bookPages);
                 }
                 AdorufuBookNBTBuilder builder = new AdorufuBookNBTBuilder(this.book);
-                boolean flag = Manager.Module.getModule(BookForgerFeature.class).isEnabled();
+                boolean flag = Manager.Feature.isFeatureEnabled(BookForgerFeature.class);
                 builder.setAuthor(flag ? BookForgerFeature.author : this.editingPlayer.getName());
                 if (flag) AdorufuMod.logMsg(false, BookForgerFeature.author);
                 builder.setTitle(this.bookTitle);

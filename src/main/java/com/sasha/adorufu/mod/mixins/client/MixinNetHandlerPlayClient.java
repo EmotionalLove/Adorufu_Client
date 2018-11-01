@@ -101,14 +101,14 @@ public class MixinNetHandlerPlayClient {
             if (this.guiScreenServer instanceof GuiScreenRealmsProxy) {
                 this.client.displayGuiScreen((new DisconnectedRealmsScreen(((GuiScreenRealmsProxy) this.guiScreenServer).getProxy(), "disconnect.lost", reason)).getProxy());
             } else {
-                if (Manager.Module.getModule(AutoReconnectFeature.class).isEnabled()) {
+                if (Manager.Feature.isFeatureEnabled(AutoReconnectFeature.class)) {
                     this.client.displayGuiScreen(new GuiDisconnectedAuto(new GuiMultiplayer(new GuiMainMenu()), "disconnect.lost", reason, AutoReconnectFeature.delay, AutoReconnectFeature.serverData));
                 } else {
                     this.client.displayGuiScreen(new GuiDisconnected(new GuiMultiplayer(new GuiMainMenu()), "disconnect.lost", reason));
                 }
             }
         } else {
-            if (Manager.Module.getModule(AutoReconnectFeature.class).isEnabled()) {
+            if (Manager.Feature.isFeatureEnabled(AutoReconnectFeature.class)) {
                 this.client.displayGuiScreen(new GuiDisconnectedAuto(new GuiMultiplayer(new GuiMainMenu()), "disconnect.lost", reason, AutoReconnectFeature.delay, AutoReconnectFeature.serverData));
             } else {
                 this.client.displayGuiScreen(new GuiDisconnected(new GuiMultiplayer(new GuiMainMenu()), "disconnect.lost", reason));

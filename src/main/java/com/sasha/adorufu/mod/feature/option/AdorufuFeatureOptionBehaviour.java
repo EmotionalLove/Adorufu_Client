@@ -16,29 +16,17 @@
  *
  */
 
-package com.sasha.adorufu.mod.feature;
+package com.sasha.adorufu.mod.feature.option;
 
-import com.sasha.adorufu.mod.feature.option.AdorufuFeatureOption;
-import com.sasha.adorufu.mod.feature.option.AdorufuFeatureOptionBehaviour;
+public class AdorufuFeatureOptionBehaviour {
 
-import java.util.List;
-import java.util.Map;
+    private boolean useModeBehaviour;
 
-public interface IAdorufuFeature {
-
-    default void onLoad() {
-        //
+    public AdorufuFeatureOptionBehaviour(boolean useModeBehaviour) {
+        this.useModeBehaviour = useModeBehaviour;
     }
-    AdorufuCategory getCategory();
-    List<AdorufuFeatureOption> getOptions();
-    AdorufuFeatureOptionBehaviour getOptionBehaviour();
-    Map<String, Boolean> getOptionsMap();
-    boolean hasOptions();
-    String getColouredName();
-    String getFeatureName();
-    void setSuffix(String s);
-    void setSuffix(String[] s);
-    void setSuffix(Map<String, Boolean> boolMap);
 
-
+    public boolean isUsingModeBehaviour() {
+        return useModeBehaviour;
+    }
 }

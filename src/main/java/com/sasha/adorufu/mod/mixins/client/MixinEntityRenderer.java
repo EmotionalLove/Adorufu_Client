@@ -215,7 +215,7 @@ public abstract class MixinEntityRenderer {
                     f5 = f5 * 0.1F;
                     RayTraceResult raytraceresult = this.mc.world.rayTraceBlocks(new Vec3d(d0 + (double)f3, d1 + (double)f4, d2 + (double)f5), new Vec3d(d0 - d4 + (double)f3 + (double)f5, d1 - d6 + (double)f4, d2 - d5 + (double)f5));
 
-                    if (raytraceresult != null && !Manager.Module.getModule(CameraClipFeature.class).isEnabled())
+                    if (raytraceresult != null && !Manager.Feature.isFeatureEnabled(CameraClipFeature.class))
                     {
                         double d7 = raytraceresult.hitVec.distanceTo(new Vec3d(d0, d1, d2));
 

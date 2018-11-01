@@ -99,7 +99,7 @@ public class AutoIgnoreFeature extends AbstractAdorufuTogglableFeature implement
             }
         }
     }
-    protected static String stripColours(String txt) {
+    public static String stripColours(String txt) {
         return txt.replaceAll("\247" + ".", "");
     }
     private static void handleIgnoring() {

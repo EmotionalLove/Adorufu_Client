@@ -19,6 +19,7 @@
 package com.sasha.adorufu.mod.feature;
 
 import com.sasha.adorufu.mod.feature.option.AdorufuFeatureOption;
+import com.sasha.adorufu.mod.feature.option.AdorufuFeatureOptionBehaviour;
 
 import java.util.Arrays;
 import java.util.List;
@@ -32,22 +33,44 @@ public abstract class AbstractAdorufuFeature implements IAdorufuFeature {
     private String suffix;
     private AdorufuCategory category;
     private List<AdorufuFeatureOption> featureOptions;
+    private AdorufuFeatureOptionBehaviour behaviour;
 
+    /**
+     * Create a Feature without any options.
+     */
     public AbstractAdorufuFeature(String name, AdorufuCategory category) {
         this.name = name;
         this.category = category;
+        this.behaviour = new AdorufuFeatureOptionBehaviour(false);
     }
 
+    /**
+     * Create a Feature with options using the default behaviour.
+     */
     public AbstractAdorufuFeature(String name, AdorufuCategory category, AdorufuFeatureOption... featureOption) {
         this.name = name;
         this.category = category;
         this.featureOptions = Arrays.asList(featureOption);
+        this.behaviour = new AdorufuFeatureOptionBehaviour(false);
+    }
+
+    /**
+     * Create a Feature with options using a defined behaviour.
+     */
+    public AbstractAdorufuFeature(String name, AdorufuCategory category, AdorufuFeatureOptionBehaviour behaviour, AdorufuFeatureOption... featureOption) {
+        this.name = name;
+        this.category = category;
+        this.featureOptions = Arrays.asList(featureOption);
+        this.behaviour = behaviour;
     }
 
     public AdorufuCategory getCategory() {
         return this.category;
     }
 
+    public AdorufuFeatureOptionBehaviour getOptionBehaviour() {
+        return behaviour;
+    }
 
     public List<AdorufuFeatureOption> getOptions() {
         return this.featureOptions;
@@ -62,7 +85,7 @@ public abstract class AbstractAdorufuFeature implements IAdorufuFeature {
                         Collectors
                                 .toMap
                                         (AdorufuFeatureOption::getIdentifer,
-                                                featureOption -> (boolean)featureOption.getStatus()));
+                                                featureOption -> (boolean) featureOption.getStatus()));
     }
 
     public boolean hasOptions() {

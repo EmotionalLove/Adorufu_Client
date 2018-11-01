@@ -57,7 +57,7 @@ public class MixinNetHandlerLoginClient {
         }
         else
         {
-            if (Manager.Module.getModule(AutoReconnectFeature.class).isEnabled()) {
+            if (Manager.Feature.isFeatureEnabled(AutoReconnectFeature.class)) {
                 this.mc.displayGuiScreen(new GuiDisconnectedAuto(this.previousGuiScreen, "connect.failed", reason, AutoReconnectFeature.delay, AutoReconnectFeature.serverData));
                 return;
             }

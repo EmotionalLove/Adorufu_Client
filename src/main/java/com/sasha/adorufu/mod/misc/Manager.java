@@ -31,12 +31,14 @@ import com.sasha.adorufu.mod.feature.deprecated.AdorufuModule;
 import com.sasha.adorufu.mod.gui.hud.RenderableObject;
 import com.sasha.eventsys.SimpleEventHandler;
 import com.sasha.eventsys.SimpleListener;
+import org.reflections.Reflections;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import static com.sasha.adorufu.mod.AdorufuMod.DATA_MANAGER;
 
@@ -229,4 +231,10 @@ public class Manager {
         }
 
     }
+
+    public static Set<Class> getClassesInPackage(String pckge, Class sub) {
+        Reflections reflections = new Reflections(pckge);
+        return reflections.getSubTypesOf(sub);
+    }
+
 }

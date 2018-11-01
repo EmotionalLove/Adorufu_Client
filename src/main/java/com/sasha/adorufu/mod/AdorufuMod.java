@@ -29,7 +29,10 @@ import com.sasha.adorufu.mod.events.adorufu.AdorufuDataFileRetrievedEvent;
 import com.sasha.adorufu.mod.events.client.ClientInputUpdateEvent;
 import com.sasha.adorufu.mod.events.client.ClientOverlayRenderEvent;
 import com.sasha.adorufu.mod.exception.AdorufuException;
-import com.sasha.adorufu.mod.feature.impl.deprecated.*;
+import com.sasha.adorufu.mod.feature.IAdorufuFeature;
+import com.sasha.adorufu.mod.feature.impl.AdorufuDiscordPresense;
+import com.sasha.adorufu.mod.feature.impl.deprecated.ModuleEntitySpeed;
+import com.sasha.adorufu.mod.feature.impl.deprecated.ModuleJoinLeaveMessages;
 import com.sasha.adorufu.mod.friend.FriendManager;
 import com.sasha.adorufu.mod.gui.fonts.FontManager;
 import com.sasha.adorufu.mod.gui.hud.AdorufuHUD;
@@ -37,8 +40,6 @@ import com.sasha.adorufu.mod.gui.hud.renderableobjects.*;
 import com.sasha.adorufu.mod.misc.Manager;
 import com.sasha.adorufu.mod.misc.ModuleState;
 import com.sasha.adorufu.mod.misc.TPS;
-import com.sasha.adorufu.mod.feature.impl.*;
-import com.sasha.adorufu.mod.feature.impl.hudelements.*;
 import com.sasha.adorufu.mod.remote.RemoteDataManager;
 import com.sasha.adorufu.mod.waypoint.WaypointManager;
 import com.sasha.eventsys.SimpleEventHandler;
@@ -66,6 +67,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
@@ -170,7 +172,7 @@ public class AdorufuMod implements SimpleListener {
             try {
                 COMMAND_PROCESSOR = new SimpleCommandProcessor("-");
                 this.registerCommands();
-                this.registerModules();
+                this.registerFeatures();
                 this.registerRenderables();
                 EVENT_MANAGER.registerListener(new CommandHandler());
                 EVENT_MANAGER.registerListener(new Manager.Module());
@@ -263,11 +265,20 @@ public class AdorufuMod implements SimpleListener {
 
     private void registerFeatures() {
         Manager.Feature.featureRegistry.clear();
-        Manager.Feature.registerFeature(new FlightFeature());
+        Manager.getClassesInPackage(AdorufuDiscordPresense.class.getPackage().getName(), IAdorufuFeature.class)
+                .forEach(e -> {
+                    try {
+                        IAdorufuFeature feature = (IAdorufuFeature) e.getConstructor().newInstance();
+                        Manager.Feature.featureRegistry.add(feature);
+                    } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e1) {
+                        e1.printStackTrace();
+                        AdorufuMod.logErr(true, "A severe uncaught exception occurred whilst initialising " +e.getSimpleName() + "!");
+                    }
+                });
         // todo api
         SETTING_CLASSES.addAll(Manager.Feature.featureRegistry);
     }
-
+/*
     private void registerModules() {
         Manager.Module.moduleRegistry.clear();
         Manager.Module.register(new ModuleXray());
@@ -340,7 +351,7 @@ public class AdorufuMod implements SimpleListener {
         Manager.Module.register(new ModuleShulkerSpy());
         AdorufuPluginLoader.getLoadedPlugins().forEach(AdorufuPlugin::onModuleRegistration);
     }
-
+*/
 
     private void registerRenderables() {
         renderableRegistry.clear();
