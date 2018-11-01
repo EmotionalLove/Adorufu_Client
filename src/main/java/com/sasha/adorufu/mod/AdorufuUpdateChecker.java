@@ -35,7 +35,10 @@ public class AdorufuUpdateChecker implements SimpleListener {
     public static String latestVer = AdorufuMod.VERSION;
 
     public static boolean checkForUpdates() {
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(new URL("http://2b2tmuseum.com/xdolfver.txt").openStream()))) {
+        try (
+                InputStreamReader ir = new InputStreamReader(new URL("http://2b2tmuseum.com/xdolfver.txt").openStream());
+                BufferedReader br = new BufferedReader(ir)
+        ) {
             return !(latestVer = br.readLine()).equals(AdorufuMod.VERSION);
         } catch (IOException e) {
             e.printStackTrace();
