@@ -28,19 +28,20 @@ import com.sasha.simplecmdsys.SimpleCommandInfo;
  **/
 @SimpleCommandInfo(description = "Adjust the yawlock value", syntax = {"<angle>"})
 public class YawCommand extends SimpleCommand {
+
     public YawCommand() {
         super("yaw");
     }
 
     @Override
     public void onCommand() {
-        if (this.getArguments() == null){
+        if (this.getArguments() == null) {
             AdorufuMod.logErr(false, "Arguments required! Try \"-help command yaw\"");
             return;
         }
         try {
             ModuleYawLock.yawDegrees = Integer.parseInt(this.getArguments()[0]);
-        }catch (Exception e) {
+        } catch (Exception e) {
             AdorufuMod.logErr(false, "Your argument must be an integer.");
         }
     }

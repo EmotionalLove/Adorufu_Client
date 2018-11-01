@@ -33,6 +33,7 @@ import static com.sasha.adorufu.mod.AdorufuMod.logErr;
  **/
 @SimpleCommandInfo(description = "Opens a browser to the download page for Adorufu", syntax = {""})
 public class UpdateCommand extends SimpleCommand {
+
     public UpdateCommand() {
         super("update");
     }

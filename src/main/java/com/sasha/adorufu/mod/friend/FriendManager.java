@@ -22,19 +22,21 @@ import com.sasha.adorufu.mod.AdorufuMod;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 /**
  * Created by Sasha on 08/08/2018 at 12:40 PM
  **/
 public class FriendManager {
 
-    private ArrayList<Friend> friendList;
+    private List<Friend> friendList;
 
     public FriendManager() {
         AdorufuMod.scheduler.schedule(() -> {
             try {
-                friendList= AdorufuMod.DATA_MANAGER.loadFriends();
+                friendList = AdorufuMod.DATA_MANAGER.loadFriends();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -47,16 +49,17 @@ public class FriendManager {
         AdorufuMod.scheduler.schedule(() -> {
             try {
                 AdorufuMod.DATA_MANAGER.saveFriends(friendList);
-            } catch (IOException ee){
+            } catch (IOException ee) {
                 ee.printStackTrace();
                 AdorufuMod.logErr(false, "Couldn't save the friend's list! (" + ee.getMessage() + ")");
             }
         }, 0, TimeUnit.NANOSECONDS);
     }
+
     public void removeFriend(String friendName) {
         Friend f1 = null;
         for (Friend f : friendList) {
-            if (f.getFriendName().equals(friendName)) {
+            if (f.getName().equals(friendName)) {
                 f1 = f;
                 break;
             }
@@ -73,25 +76,20 @@ public class FriendManager {
 
     public boolean isFriended(String friendName) {
         for (Friend f : friendList) {
-            if (f.getFriendName().equalsIgnoreCase(friendName)) {
+            if (f.getName().equalsIgnoreCase(friendName)) {
                 return true;
             }
         }
         return false;
     }
 
-    public ArrayList<Friend> getFriendList() {
+    public List<Friend> getFriendList() {
         return friendList;
     }
-    public ArrayList<String> getFriendListString() {
-        ArrayList<String> friendStrs = new ArrayList<>();
-        for (Friend friend : friendList) {
-            friendStrs.add(friend.getFriendName());
-        }
-        return friendStrs;
+
+    public List<String> getFriendListString() {
+        return this.friendList.stream().map(Friend::getName).collect(Collectors.toList());
     }
-
-
 
     /* these are outdated Adorufu 3.x functions
     public static void saveFriends() throws IOException {

@@ -22,19 +22,20 @@ package com.sasha.adorufu.mod.friend;
  * Created by Sasha on 08/08/2018 at 12:34 PM
  **/
 public class Friend {
-    private String friendName;
 
-    public Friend(String friendName) {
-        this.friendName = friendName;
+    private String name;
+
+    public Friend(String name) {
+        this.name = name;
     }
 
-    public String getFriendName() {
-        return this.friendName;
+    public String getName() {
+        return this.name;
     }
 
     @Deprecated
-    public void setFriendName(String friendName) {
-        this.friendName = friendName;
+    public void setName(String name) {
+        this.name = name;
         // why would you wanna do this anyways?
     }
 }

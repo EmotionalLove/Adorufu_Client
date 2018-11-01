@@ -27,22 +27,8 @@ import com.sasha.adorufu.mod.module.ModuleInfo;
  **/
 @ModuleInfo(description = "Renders your equipment's damage on the HUD")
 public class ModuleEquipmentDamage extends AdorufuModule {
+
     public ModuleEquipmentDamage() {
         super("EquipmentDamage", AdorufuCategory.GUI, true);
-    }
-
-    @Override
-    public void onEnable() {
-
-    }
-
-    @Override
-    public void onDisable() {
-
-    }
-
-    @Override
-    public void onTick() {
-
     }
 }

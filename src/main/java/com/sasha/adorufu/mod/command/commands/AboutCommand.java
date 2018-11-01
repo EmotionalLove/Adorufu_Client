@@ -27,6 +27,7 @@ import com.sasha.simplecmdsys.SimpleCommandInfo;
  **/
 @SimpleCommandInfo(description = "Displays the authors of the client and the client's version.", syntax = {""})
 public class AboutCommand extends SimpleCommand {
+
     public AboutCommand() {
         super("about");
     }

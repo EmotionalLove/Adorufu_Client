@@ -22,17 +22,19 @@ import com.sasha.adorufu.mod.AdorufuMod;
 import com.sasha.adorufu.mod.misc.Manager;
 import com.sasha.simplecmdsys.SimpleCommand;
 import com.sasha.simplecmdsys.SimpleCommandInfo;
+
 /**
  * Created by Sasha on 09/08/2018 at 3:28 PM
  **/
 @SimpleCommandInfo(description = "Used for debugging. To be removed", syntax = {""})
 public class ModulesCommand extends SimpleCommand {
+
     public ModulesCommand() {
         super("modules");
     }
 
-    public void onCommand(){
+    public void onCommand() {
         Manager.Module.moduleRegistry.forEach(module -> AdorufuMod.logMsg(false, module.getModuleName() + (module.isEnabled() ? "\247aenabled" : "\247cdisabled")
-        + " " + (module.isRenderable() ? "\247arenderable" : "\247crenderable")));
+                + " " + (module.isRenderable() ? "\247arenderable" : "\247crenderable")));
     }
 }

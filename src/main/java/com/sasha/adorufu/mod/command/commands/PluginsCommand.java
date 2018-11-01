@@ -28,6 +28,7 @@ import com.sasha.simplecmdsys.SimpleCommandInfo;
  */
 @SimpleCommandInfo(description = "List loaded plugins")
 public class PluginsCommand extends SimpleCommand {
+
     public PluginsCommand() {
         super("plugins");
     }

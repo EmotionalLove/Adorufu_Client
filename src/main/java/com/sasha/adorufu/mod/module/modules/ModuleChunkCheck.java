@@ -40,8 +40,8 @@ import java.util.List;
 @ModuleInfo(description = "Highlights blocks that were added since the last time you were in that chunk")
 public class ModuleChunkCheck extends AdorufuModule implements SimpleListener {
 
-    protected static volatile ArrayList<ChunkCheckData> chunkDatas = new ArrayList<>();
-    private static ArrayList<BlockPos> changedBlocks = new ArrayList<>();
+    protected static volatile List<ChunkCheckData> chunkDatas = new ArrayList<>();
+    private static List<BlockPos> changedBlocks = new ArrayList<>();
 
     public static boolean didPrep = false;
 

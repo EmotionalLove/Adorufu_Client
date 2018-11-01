@@ -44,6 +44,7 @@ public class Waypoint implements Serializable {
         this.ip = ip;
         this.name = name;
     }
+
     public Waypoint(int x, int y, int z, int dim, boolean doesRender, String ip, String name) {
         this.x = x;
         this.y = y;
@@ -55,9 +56,9 @@ public class Waypoint implements Serializable {
     }
 
     public int[] getCoords() {
-        int[] kek = {this.x, this.y, this.z};
-        return kek;
+        return new int[] { this.x, this.y, this.z };
     }
+
     public String getName() {
         return this.name;
     }
@@ -73,7 +74,8 @@ public class Waypoint implements Serializable {
     public boolean isDoesRender() {
         return doesRender;
     }
-    public void toggle(){
-        doesRender=!doesRender;
+
+    public void toggle() {
+        doesRender = !doesRender;
     }
 }

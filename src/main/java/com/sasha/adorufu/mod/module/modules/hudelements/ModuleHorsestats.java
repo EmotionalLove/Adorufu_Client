@@ -27,22 +27,8 @@ import com.sasha.adorufu.mod.module.ModuleInfo;
  **/
 @ModuleInfo(description = "Renders horse statistics on the HUD")
 public class ModuleHorsestats extends AdorufuModule {
+
     public ModuleHorsestats() {
         super("HorseStats", AdorufuCategory.GUI, true);
-    }
-
-    @Override
-    public void onEnable() {
-
-    }
-
-    @Override
-    public void onDisable() {
-
-    }
-
-    @Override
-    public void onTick() {
-
     }
 }

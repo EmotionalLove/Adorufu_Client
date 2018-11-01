@@ -22,10 +22,11 @@ import com.sasha.adorufu.mod.AdorufuMod;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class WaypointManager {
 
-    private ArrayList<Waypoint> waypoints = new ArrayList<>();
+    private List<Waypoint> waypoints = new ArrayList<>();
 
     public WaypointManager() {
         try {
@@ -35,9 +36,11 @@ public class WaypointManager {
             AdorufuMod.logErr(true, "Failed to load waypoints from files.");
         }
     }
-    public ArrayList<Waypoint> getWaypoints() {
+
+    public List<Waypoint> getWaypoints() {
         return waypoints;
     }
+
     public void addWaypoint(Waypoint waypoint, boolean save) {
         waypoints.add(waypoint);
         if (!save) return;
@@ -48,6 +51,7 @@ public class WaypointManager {
             AdorufuMod.logErr(false, "Couldn't save waypoint to file!");
         }
     }
+
     public void delWaypoint(String waypoint) {
         Waypoint toDelete = null;
         for (Waypoint waypoint1 : waypoints) {
@@ -65,6 +69,7 @@ public class WaypointManager {
             AdorufuMod.logErr(false, "Couldn't delete waypoint file on disk!");
         }
     }
+
     public boolean sameName(String name) {
         for (Waypoint waypoint : waypoints) {
             if (waypoint.getName().equals(name)) {

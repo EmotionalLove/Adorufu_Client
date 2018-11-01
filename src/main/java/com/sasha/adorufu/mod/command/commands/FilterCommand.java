@@ -30,6 +30,7 @@ import java.io.IOException;
  **/
 @SimpleCommandInfo(description = "Filter messages containing a word or phrase from chat", syntax = {"<word or phrase>"})
 public class FilterCommand extends SimpleCommand {
+
     public FilterCommand() {
         super("filter");
     }

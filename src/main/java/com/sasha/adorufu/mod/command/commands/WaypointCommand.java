@@ -22,15 +22,17 @@ import com.sasha.adorufu.mod.AdorufuMod;
 import com.sasha.adorufu.mod.waypoint.Waypoint;
 import com.sasha.simplecmdsys.SimpleCommand;
 import com.sasha.simplecmdsys.SimpleCommandInfo;
+
 @SimpleCommandInfo(description = "Add or remove waypoints", syntax = {"<'add'/'del'> <name>", "<'add'/'del'> <name> <x> <y> <z>"})
 public class WaypointCommand extends SimpleCommand {
+
     public WaypointCommand() {
         super("waypoint");
     }
 
     @Override
     public void onCommand() {
-        if (this.getArguments() == null || this.getArguments().length < 2){
+        if (this.getArguments() == null || this.getArguments().length < 2) {
             AdorufuMod.logErr(false, "Arguments required! Try \"-help command waypoint\"");
             return;
         }

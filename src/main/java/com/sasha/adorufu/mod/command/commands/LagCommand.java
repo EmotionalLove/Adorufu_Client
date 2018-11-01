@@ -21,11 +21,13 @@ package com.sasha.adorufu.mod.command.commands;
 import com.sasha.adorufu.mod.AdorufuMod;
 import com.sasha.simplecmdsys.SimpleCommand;
 import com.sasha.simplecmdsys.SimpleCommandInfo;
+
 /**
  * Created by Sasha on 11/08/2018 at 7:05 PM
  **/
 @SimpleCommandInfo(description = "Displays data about the extra time needed to tick modules.", syntax = {""})
 public class LagCommand extends SimpleCommand {
+
     public LagCommand() {
         super("lag");
     }

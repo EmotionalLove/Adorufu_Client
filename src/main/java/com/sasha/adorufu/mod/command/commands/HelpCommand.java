@@ -27,6 +27,7 @@ import java.util.HashMap;
 
 import static com.sasha.adorufu.mod.AdorufuMod.*;
 import static com.sasha.adorufu.mod.misc.Manager.Module.moduleRegistry;
+
 /**
  * Created by Sasha on 10/08/2018 at 9:28 AM
  **/

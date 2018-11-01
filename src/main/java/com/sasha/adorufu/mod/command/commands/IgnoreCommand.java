@@ -30,6 +30,7 @@ import java.io.IOException;
  **/
 @SimpleCommandInfo(description = "Ignore or unignore a player. The player's name is CaSe SeNsiTve", syntax = {"<player>"})
 public class IgnoreCommand extends SimpleCommand {
+
     public IgnoreCommand() {
         super("ignore");
     }

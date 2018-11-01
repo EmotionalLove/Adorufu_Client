@@ -27,22 +27,8 @@ import com.sasha.adorufu.mod.module.ModuleInfo;
  **/
 @ModuleInfo(description = "Renders the tickrate on the HUD")
 public class ModuleTPS extends AdorufuModule {
+
     public ModuleTPS() {
         super("TPS", AdorufuCategory.GUI, true);
-    }
-
-    @Override
-    public void onEnable() {
-
-    }
-
-    @Override
-    public void onDisable() {
-
-    }
-
-    @Override
-    public void onTick() {
-
     }
 }

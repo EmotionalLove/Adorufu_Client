@@ -27,22 +27,8 @@ import com.sasha.adorufu.mod.module.ModuleInfo;
  **/
 @ModuleInfo(description = "Renders your saturation level on the HUD")
 public class ModuleSaturation extends AdorufuModule {
+
     public ModuleSaturation() {
         super("Saturation", AdorufuCategory.GUI, true);
-    }
-
-    @Override
-    public void onEnable() {
-
-    }
-
-    @Override
-    public void onDisable() {
-
-    }
-
-    @Override
-    public void onTick() {
-
     }
 }

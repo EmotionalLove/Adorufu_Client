@@ -56,13 +56,14 @@ public class AdorufuDataManager {
 
     public LinkedHashMap<String, PlayerIdentity> identityCacheMap = new LinkedHashMap<>();
 
-    AdorufuDataManager(){}
+    AdorufuDataManager() {}
 
     /**
      * Used for saving a float,double,string,int,long... anything like that, really.
-     * @param path the path in the config to save it to. (recommended is Adorufu.something)
+     *
+     * @param path    the path in the config to save it to. (recommended is Adorufu.something)
      * @param varName the name of the variable in the cfg file
-     * @param obj the thing to save.
+     * @param obj     the thing to save.
      */
     public synchronized void saveSomeGenericValue(String path, String varName, Object obj) throws IOException {
         threadLock.lock();
@@ -157,6 +158,7 @@ public class AdorufuDataManager {
             logWarn(true, "Thread locking disengaged!");
         }
     }
+
     public synchronized void loadPlayerIdentities() throws IOException {
         logMsg(true, "Loading id's...");
         identityLock.lock();
@@ -178,7 +180,7 @@ public class AdorufuDataManager {
                     ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
                     Object wayptObj = objectInputStream.readObject();
                     if (wayptObj instanceof PlayerIdentity) {
-                        identityCacheMap.put(((PlayerIdentity) wayptObj).getStringUuid(),(PlayerIdentity)wayptObj);
+                        identityCacheMap.put(((PlayerIdentity) wayptObj).getStringUuid(), (PlayerIdentity) wayptObj);
                         objectInputStream.close();
                         inputStream.close();
                         return;
@@ -186,7 +188,7 @@ public class AdorufuDataManager {
                     objectInputStream.close();
                     inputStream.close();
                     logWarn(true, wyptFile.getName() + " was not a id, skipping.");
-                }catch (IOException | ClassNotFoundException ex) {
+                } catch (IOException | ClassNotFoundException ex) {
                     ex.printStackTrace(); //dont rly care
                     return;
                 }
@@ -196,7 +198,8 @@ public class AdorufuDataManager {
             logWarn(true, "Thread locking disengaged!");
         }
     }
-    public synchronized ArrayList<Waypoint> loadWaypoints() throws IOException {
+
+    public synchronized List<Waypoint> loadWaypoints() throws IOException {
         logMsg(true, "Loading waypoints...");
         waypointLock.lock();
         logWarn(true, "Thread locking engaged!");
@@ -210,7 +213,7 @@ public class AdorufuDataManager {
                 f.delete();
                 return new ArrayList<>(); // nothing to load :p
             }
-            ArrayList<Waypoint> theWaypoints = new ArrayList<>();
+            List<Waypoint> theWaypoints = new ArrayList<>();
             List<File> files = Arrays.asList(f.listFiles());
             files.stream().filter(file -> file.getName().endsWith(".wypt")).forEach(wyptFile -> {
                 try {
@@ -218,7 +221,7 @@ public class AdorufuDataManager {
                     ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
                     Object wayptObj = objectInputStream.readObject();
                     if (wayptObj instanceof Waypoint) {
-                        theWaypoints.add((Waypoint)wayptObj);
+                        theWaypoints.add((Waypoint) wayptObj);
                         objectInputStream.close();
                         inputStream.close();
                         return;
@@ -226,7 +229,7 @@ public class AdorufuDataManager {
                     objectInputStream.close();
                     inputStream.close();
                     logWarn(true, wyptFile.getName() + " was not a waypoint, skipping.");
-                }catch (IOException | ClassNotFoundException ex) {
+                } catch (IOException | ClassNotFoundException ex) {
                     ex.printStackTrace(); //dont rly care
                     return;
                 }
@@ -256,6 +259,7 @@ public class AdorufuDataManager {
             logWarn(true, "Thread locking disengaged!");
         }
     }
+
     public synchronized void saveFilterList(List<String> wordlist) throws IOException {
         logMsg(true, "Saving filterlist...");
         threadLock.lock();
@@ -274,7 +278,8 @@ public class AdorufuDataManager {
             logWarn(true, "Thread locking disengaged!");
         }
     }
-    public synchronized void saveGreeterMsgs(ArrayList<List<String>> greets) throws IOException {
+
+    public synchronized void saveGreeterMsgs(List<List<String>> greets) throws IOException {
         logMsg(true, "Saving greeter messages...");
         threadLock.lock();
         logWarn(true, "Thread locking engaged!");
@@ -293,6 +298,7 @@ public class AdorufuDataManager {
             logWarn(true, "Thread locking disengaged!");
         }
     }
+
     public synchronized List<String> loadIgnorelist() throws IOException {
         logMsg(true, "Getting ignorelist...");
         threadLock.lock();
@@ -310,6 +316,7 @@ public class AdorufuDataManager {
             logWarn(true, "Thread locking disengaged!");
         }
     }
+
     public synchronized List<String> loadFilterList() throws IOException {
         logMsg(true, "Getting worldfilter...");
         threadLock.lock();
@@ -327,7 +334,8 @@ public class AdorufuDataManager {
             logWarn(true, "Thread locking disengaged!");
         }
     }
-    public synchronized ArrayList<List<String>> loadGreets() throws IOException {
+
+    public synchronized List<List<String>> loadGreets() throws IOException {
         logMsg(true, "Getting greets...");
         threadLock.lock();
         logWarn(true, "Thread locking engaged!");
@@ -336,12 +344,12 @@ public class AdorufuDataManager {
             if (!f.exists()) {
                 AdorufuMod.logErr(true, "Data file doesn't exist (maybe this is the client's getKey run?)");
                 f.createNewFile();
-                ArrayList<String> defaultJoin = new ArrayList<>();
-                ArrayList<String> defaultLeave = new ArrayList<>();
+                List<String> defaultJoin = new ArrayList<>();
+                List<String> defaultLeave = new ArrayList<>();
                 defaultJoin.add("Hi, [player]");
                 defaultLeave.add("Bye, [player]");
                 ModuleJoinLeaveMessages.defaultLoaded = true;
-                ArrayList<List<String>> defaults = new ArrayList<>();
+                List<List<String>> defaults = new ArrayList<>();
                 defaults.add(defaultJoin);
                 defaults.add(defaultLeave);
                 threadLock.unlock();
@@ -350,21 +358,21 @@ public class AdorufuDataManager {
             }
             YMLParser parser = new YMLParser(f);
             if (!parser.exists("Adorufu.greeter.join") && !parser.exists("Adorufu.greeter.leave")) {
-                ArrayList<String> defaultJoin = new ArrayList<>();
-                ArrayList<String> defaultLeave = new ArrayList<>();
+                List<String> defaultJoin = new ArrayList<>();
+                List<String> defaultLeave = new ArrayList<>();
                 defaultJoin.add("Hi, [player]");
                 defaultLeave.add("Bye, [player]");
                 ModuleJoinLeaveMessages.defaultLoaded = true;
-                ArrayList<List<String>> defaults = new ArrayList<>();
+                List<List<String>> defaults = new ArrayList<>();
                 defaults.add(defaultJoin);
                 defaults.add(defaultLeave);
                 threadLock.unlock();
                 saveGreeterMsgs(defaults);
                 threadLock.lock();
             }
-            List<String> joins =  parser.getStringList("Adorufu.greeter.join");
-            List<String> leaves =  parser.getStringList("Adorufu.greeter.leave");
-            ArrayList<List<String>> theReturn = new ArrayList<>();
+            List<String> joins = parser.getStringList("Adorufu.greeter.join");
+            List<String> leaves = parser.getStringList("Adorufu.greeter.leave");
+            List<List<String>> theReturn = new ArrayList<>();
             theReturn.add(joins);
             theReturn.add(leaves);
             return theReturn;
@@ -373,7 +381,7 @@ public class AdorufuDataManager {
             logWarn(true, "Thread locking disengaged!");
         }
     }
-    
+
     public synchronized boolean getDRPEnabled() throws IOException {
         logMsg(true, "Checking to see if DRP should be enabled.");
         threadLock.lock();
@@ -385,7 +393,7 @@ public class AdorufuDataManager {
                 return true; // assuming true
             }
             YMLParser parser = new YMLParser(f);
-            if (!parser.exists("Adorufu.discordpresence.enabled")){
+            if (!parser.exists("Adorufu.discordpresence.enabled")) {
                 parser.set("Adorufu.discordpresence.enabled", true);
                 return true;
             }
@@ -396,11 +404,11 @@ public class AdorufuDataManager {
         }
     }
 
-    public synchronized void saveXrayBlocks(ArrayList<Block> blocks) throws IOException {
+    public synchronized void saveXrayBlocks(List<Block> blocks) throws IOException {
         logMsg(true, "Saving Xray blocks...");
         threadLock.lock();
         logWarn(true, "Thread locking engaged!");
-        ArrayList<Integer> intBlocks = new ArrayList<>();
+        List<Integer> intBlocks = new ArrayList<>();
         blocks.forEach(b -> intBlocks.add(Block.getIdFromBlock(b))); // In 3.x I used the Localised name, but the localised name changes when you change the game's language
         try {
             File f = new File(dataFileName);
@@ -416,11 +424,12 @@ public class AdorufuDataManager {
             logWarn(true, "Thread locking disengaged!");
         }
     }
-    public synchronized ArrayList<Block> getXrayBlocks() throws IOException {
+
+    public synchronized List<Block> getXrayBlocks() throws IOException {
         logMsg(true, "Saving Xray blocks...");
         threadLock.lock();
         logWarn(true, "Thread locking engaged!");
-        List<Integer> intBlocks = new ArrayList<>();
+        List<Integer> intBlocks;
         try {
             File f = new File(dataFileName);
             if (!f.exists()) {
@@ -428,10 +437,10 @@ public class AdorufuDataManager {
                 return new ArrayList<>();
             }
             YMLParser parser = new YMLParser(f);
-            if (!parser.exists("Adorufu.xray.blocks")){
+            if (!parser.exists("Adorufu.xray.blocks")) {
                 return new ArrayList<>();
             }
-            ArrayList<Block> realBlocks=new ArrayList<>();
+            List<Block> realBlocks = new ArrayList<>();
             intBlocks = parser.getIntegerList("Adorufu.xray.blocks");
             intBlocks.forEach(id -> realBlocks.add(Block.getBlockById(id)));
             return realBlocks;
@@ -442,7 +451,7 @@ public class AdorufuDataManager {
     }
 
     public synchronized void saveGuiElementPos(AdorufuGuiWindow element) throws IOException {
-        logMsg(true, "Saving \"" + element.getTitle() +"\"'s current GUI position...");
+        logMsg(true, "Saving \"" + element.getTitle() + "\"'s current GUI position...");
         threadLock.lock();
         logWarn(true, "Thread locking engaged!");
         try {
@@ -455,13 +464,13 @@ public class AdorufuDataManager {
             parser.set("Adorufu.newclickgui." + element.getTitle().toLowerCase() + ".x", element.getX());
             parser.set("Adorufu.newclickgui." + element.getTitle().toLowerCase() + ".y", element.getY());
             parser.save();
-        }
-        finally {
+        } finally {
             threadLock.unlock();
         }
     }
+
     public synchronized int[] loadGuiElementPos(String elementTitle) throws IOException {
-        logMsg(true, "Loading \"" + elementTitle +"\"'s saved GUI position...");
+        logMsg(true, "Loading \"" + elementTitle + "\"'s saved GUI position...");
         threadLock.lock();
         logWarn(true, "Thread locking engaged!");
         try {
@@ -469,61 +478,61 @@ public class AdorufuDataManager {
             if (!f.exists()) {
                 AdorufuMod.logErr(true, "Data file doesn't exist smh");
                 f.createNewFile();
-                return new int[]{100,100};
+                return new int[]{100, 100};
             }
             YMLParser parser = new YMLParser(f);
             int[] coords = new int[2];
             coords[0] = parser.getInt("Adorufu.newclickgui." + elementTitle.toLowerCase() + ".x"
                     , 100);
-            coords [1] = parser.getInt("Adorufu.newclickgui." + elementTitle.toLowerCase() + ".y"
+            coords[1] = parser.getInt("Adorufu.newclickgui." + elementTitle.toLowerCase() + ".y"
                     , 100);
             return coords;
-        }
-        finally {
+        } finally {
             threadLock.unlock();
         }
     }
 
     @Deprecated
-    public synchronized int[] getLegacySavedGuiPos(AdorufuWindow window){
-        logMsg(true, "Loading \"" + window.getTitle()+"\"'s saved GUI position...");
+    public synchronized int[] getLegacySavedGuiPos(AdorufuWindow window) {
+        logMsg(true, "Loading \"" + window.getTitle() + "\"'s saved GUI position...");
         threadLock.lock();
         logWarn(true, "Thread locking engaged!");
         try {
             File f = new File(dataFileName);
-            if (!f.exists()){
+            if (!f.exists()) {
                 AdorufuMod.logErr(true, "Data file doesn't exist (maybe this is the client's getKey run?)");
-                return new int[]{0,0};
+                return new int[]{0, 0};
             }
             YMLParser parser = new YMLParser(f);
-            if (!parser.exists("Adorufu.gui.clickgui."+window.getTitle()+".x") && (!parser.exists("Adorufu.gui.clickgui."+window.getTitle()+".y"))){
-                parser.set("Adorufu.gui.clickgui."+window.getTitle()+".x", window.dragX);
-                parser.set("Adorufu.gui.clickgui."+window.getTitle()+".y", window.dragY);
+            if (!parser.exists("Adorufu.gui.clickgui." + window.getTitle() + ".x") && (!parser.exists("Adorufu.gui.clickgui." + window.getTitle() + ".y"))) {
+                parser.set("Adorufu.gui.clickgui." + window.getTitle() + ".x", window.dragX);
+                parser.set("Adorufu.gui.clickgui." + window.getTitle() + ".y", window.dragY);
                 parser.save();
-                return new int[]{0,0};
+                return new int[]{0, 0};
             }
-            int x = parser.getInt("Adorufu.gui.clickgui."+window.getTitle()+".x",0);
-            int y = parser.getInt("Adorufu.gui.clickgui."+window.getTitle()+".y",0);
-            return new int[]{x,y};
+            int x = parser.getInt("Adorufu.gui.clickgui." + window.getTitle() + ".x", 0);
+            int y = parser.getInt("Adorufu.gui.clickgui." + window.getTitle() + ".y", 0);
+            return new int[]{x, y};
         } finally {
             threadLock.unlock();
             logWarn(true, "Thread locking disengaged!");
         }
     }
+
     @Deprecated
-    public synchronized void saveLegacyGuiPos(AdorufuWindow window) throws IOException{
-        logMsg(true, "Saving \"" + window.getTitle()+"\"'s GUI position...");
+    public synchronized void saveLegacyGuiPos(AdorufuWindow window) throws IOException {
+        logMsg(true, "Saving \"" + window.getTitle() + "\"'s GUI position...");
         threadLock.lock();
         logWarn(true, "Thread locking engaged!");
         try {
             File f = new File(dataFileName);
-            if (!f.exists()){
+            if (!f.exists()) {
                 AdorufuMod.logErr(true, "Data file doesn't exist (maybe this is the client's getKey run?)");
                 f.createNewFile();
             }
             YMLParser parser = new YMLParser(f);
-            parser.set("Adorufu.gui.clickgui."+window.getTitle()+".x",window.dragX);
-            parser.set("Adorufu.gui.clickgui."+window.getTitle()+".y",window.dragY);
+            parser.set("Adorufu.gui.clickgui." + window.getTitle() + ".x", window.dragX);
+            parser.set("Adorufu.gui.clickgui." + window.getTitle() + ".y", window.dragY);
             parser.save();
         } finally {
             threadLock.unlock();
@@ -532,12 +541,12 @@ public class AdorufuDataManager {
     }
 
     public synchronized ScreenCornerPos getHudPositionState(RenderableObject robj) throws IOException {
-        logMsg(true, "Loading \"" + robj.getName() +"\"'s saved HUD position...");
+        logMsg(true, "Loading \"" + robj.getName() + "\"'s saved HUD position...");
         threadLock.lock();
         logWarn(true, "Thread locking engaged!");
         try {
             File f = new File(dataFileName);
-            if (!f.exists()){
+            if (!f.exists()) {
                 AdorufuMod.logErr(true, "Data file doesn't exist (maybe this is the client's getKey run?)");
                 f.createNewFile();
                 logMsg(true, "Creating new data file with default HUD poaitions.");
@@ -547,7 +556,7 @@ public class AdorufuDataManager {
                 return robj.getDefaultPos();
             }
             YMLParser parser = new YMLParser(f);
-            if (!parser.exists("Adorufu.gui.hud." + robj.getName().toLowerCase())){
+            if (!parser.exists("Adorufu.gui.hud." + robj.getName().toLowerCase())) {
                 parser.set("Adorufu.gui.hud." + robj.getName().toLowerCase(), RenderableObject.getPosStr(robj.getDefaultPos()));
                 parser.save();
                 return robj.getDefaultPos();
@@ -559,7 +568,7 @@ public class AdorufuDataManager {
         }
     }
 
-    public synchronized int getSavedKeybind(AdorufuModule module){
+    public synchronized int getSavedKeybind(AdorufuModule module) {
         logMsg(true, "Getting module keybinde...");
         threadLock.lock(); // Don't allow other threads to modify this file until this operation is done.
         logWarn(true, "Thread locking engaged!");
@@ -570,17 +579,18 @@ public class AdorufuDataManager {
                 return 0;
             }
             YMLParser parser = new YMLParser(file);
-            if (!parser.exists("Adorufu.modules."+module.getModuleName().toLowerCase()+".bind")){
-                parser.set("Adorufu.modules."+module.getModuleName()+".bind", 0);
+            if (!parser.exists("Adorufu.modules." + module.getModuleName().toLowerCase() + ".bind")) {
+                parser.set("Adorufu.modules." + module.getModuleName() + ".bind", 0);
                 parser.save();
                 return 0;
             }
-            return parser.getInt("Adorufu.modules."+module.getModuleName().toLowerCase()+".bind", 0);
+            return parser.getInt("Adorufu.modules." + module.getModuleName().toLowerCase() + ".bind", 0);
         } finally {
             threadLock.unlock();
             logWarn(true, "Thread locking disengaged!");
         }
     }
+
     public synchronized void saveModuleBind(AdorufuModule module) throws IOException {
         logMsg(true, "Saving module keybinde...");
         threadLock.lock(); // Don't allow other threads to modify this file until this operation is done.
@@ -592,7 +602,7 @@ public class AdorufuDataManager {
                 file.createNewFile();
             }
             YMLParser parser = new YMLParser(file);
-            parser.set("Adorufu.modules."+module.getModuleName().toLowerCase()+".bind", module.getKeyBind());
+            parser.set("Adorufu.modules." + module.getModuleName().toLowerCase() + ".bind", module.getKeyBind());
             parser.save();
         } finally {
             threadLock.unlock();
@@ -610,13 +620,14 @@ public class AdorufuDataManager {
                 file.createNewFile();
             }
             YMLParser parser = new YMLParser(file);
-            moduleRegistry.forEach(mod -> parser.set("Adorufu.modules." + mod.getModuleName().toLowerCase()+".state", fileExists && mod.isEnabled()));
+            moduleRegistry.forEach(mod -> parser.set("Adorufu.modules." + mod.getModuleName().toLowerCase() + ".state", fileExists && mod.isEnabled()));
             parser.save();
         } finally {
             threadLock.unlock();
             logWarn(true, "Thread locking disengaged!");
         }
     }
+
     public synchronized void saveModuleOption(String modName, String optionName, boolean state) throws IOException {
         logMsg(true, "Updating module option setting...");
         threadLock.lock(); // Don't allow other threads to modify this file until this operation is done.
@@ -634,6 +645,7 @@ public class AdorufuDataManager {
             logWarn(true, "Thread locking disengaged!");
         }
     }
+
     public synchronized boolean getSavedModuleState(String modName) throws IOException {
         logMsg(true, "Getting module \"" + modName + "\"'s previously saved state...");
         threadLock.lock();
@@ -652,6 +664,7 @@ public class AdorufuDataManager {
             logWarn(true, "Thread locking disengaged!");
         }
     }
+
     public synchronized boolean getSavedModuleOption(String modName, String optionName, boolean def) {
         logMsg(true, "Getting module \"" + modName + "\"'s previously saved options...");
         threadLock.lock();
@@ -674,7 +687,8 @@ public class AdorufuDataManager {
             logWarn(true, "Thread locking disengaged!");
         }
     }
-    public synchronized void saveFriends(ArrayList<Friend> updatedFriends) throws IOException {
+
+    public synchronized void saveFriends(List<Friend> updatedFriends) throws IOException {
         try {
             logMsg(true, "Updating saved friends...");
             threadLock.lock(); // Don't allow other threads to modify this file until this operation is done.
@@ -684,8 +698,8 @@ public class AdorufuDataManager {
                 file.createNewFile();
             }
             YMLParser parser = new YMLParser(file);
-            ArrayList<String> strFriends = new ArrayList<>();
-            updatedFriends.forEach(f -> strFriends.add(f.getFriendName()));
+            List<String> strFriends = new ArrayList<>();
+            updatedFriends.forEach(f -> strFriends.add(f.getName()));
             if (strFriends.isEmpty()) {
                 strFriends.add("");
             }
@@ -695,7 +709,8 @@ public class AdorufuDataManager {
             threadLock.unlock();
         }
     }
-    public synchronized ArrayList<Friend> loadFriends() throws IOException {
+
+    public synchronized List<Friend> loadFriends() throws IOException {
         logMsg(true, "Loading saved friends...");
         threadLock.lock();
         logWarn(true, "Thread locking engaged!");
@@ -707,7 +722,7 @@ public class AdorufuDataManager {
             }
             YMLParser parser = new YMLParser(file);
             List<String> list = parser.getStringList("Adorufu.friends.friendlist");
-            ArrayList<Friend> fliet = new ArrayList<>();
+            List<Friend> fliet = new ArrayList<>();
             list.forEach(fs -> fliet.add(new Friend(fs)));
             return fliet; // it was supposed to say flist but i made a typo but idc, now its a filet :yum:
         } finally {
@@ -720,9 +735,10 @@ public class AdorufuDataManager {
 
     /**
      * Used for saving a float,double,string,int,long... anything like that, really.
-     * @param path the path in the config to save it to. (recommended is Adorufu.something)
+     *
+     * @param path    the path in the config to save it to. (recommended is Adorufu.something)
      * @param varName the name of the variable in the cfg file
-     * @param obj the thing to save.
+     * @param obj     the thing to save.
      */
     public synchronized void savePluginData(String path, String varName, Object obj) throws IOException {
         threadLock.lock();

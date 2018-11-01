@@ -27,22 +27,8 @@ import com.sasha.adorufu.mod.module.ModuleInfo;
  **/
 @ModuleInfo(description = "Renders the hack arraylist on the HUD")
 public class ModuleHacklist extends AdorufuModule {
+
     public ModuleHacklist() {
         super("Hacklist", AdorufuCategory.GUI, true);
-    }
-
-    @Override
-    public void onEnable() {
-
-    }
-
-    @Override
-    public void onDisable() {
-
-    }
-
-    @Override
-    public void onTick() {
-
     }
 }

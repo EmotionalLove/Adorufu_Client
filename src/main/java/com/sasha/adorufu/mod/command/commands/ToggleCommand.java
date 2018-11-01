@@ -24,24 +24,26 @@ import com.sasha.simplecmdsys.SimpleCommand;
 import com.sasha.simplecmdsys.SimpleCommandInfo;
 
 import java.util.concurrent.atomic.AtomicBoolean;
+
 /**
  * Created by Sasha on 08/08/2018 at 9:26 PM
  **/
 @SimpleCommandInfo(description = "Toggle a named module", syntax = {"<module>"})
 public class ToggleCommand extends SimpleCommand {
+
     public ToggleCommand() {
         super("toggle");
     }
 
     @Override
     public void onCommand() {
-        if (this.getArguments() == null){
+        if (this.getArguments() == null) {
             AdorufuMod.logErr(false, "Arguments required! \"-toggle <module>\"");
             return;
         }
         AtomicBoolean found = new AtomicBoolean(false);
         Manager.Module.moduleRegistry.forEach(mod -> {
-            if (mod.getModuleName().equalsIgnoreCase(this.getArguments()[0])){
+            if (mod.getModuleName().equalsIgnoreCase(this.getArguments()[0])) {
                 mod.toggle();
                 AdorufuMod.logMsg(false, "Toggled " + mod.getModuleName());
                 found.set(true);

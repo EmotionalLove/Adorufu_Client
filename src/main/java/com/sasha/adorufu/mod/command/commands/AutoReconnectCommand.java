@@ -41,7 +41,7 @@ public class AutoReconnectCommand extends SimpleCommand {
             AdorufuMod.logErr(false, "Speed values smaller than 0.1 are not allowed.");
             return;
         }
-        ModuleAutoReconnect.delay = (long)newSpeed/1000;
+        ModuleAutoReconnect.delay = (long) newSpeed / 1000;
         AdorufuMod.logMsg(false, "AutoReconnect's speed changed to " + newSpeed);
     }
 }
