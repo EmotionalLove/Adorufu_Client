@@ -58,58 +58,36 @@ public class ModuleQueueTime extends AdorufuModule implements SimpleListener {
     public void onTick() {
 
     }
-
     @SimpleEventHandler
     public void onChatRecieved(ClientPacketRecieveEvent ev) {
         if (!this.isEnabled()) return;
         if (ev.getRecievedPacket() instanceof SPacketChat) {
-            SPacketChat e = (SPacketChat) ev.getRecievedPacket();
-            //AdorufuMod.logMsg(false, stripColours(e.chatComponent.getUnformattedText()));
+            SPacketChat e = ev.getRecievedPacket();
             if (stripColours(e.getChatComponent().getUnformattedText()).startsWith("Position in queue: ")) {
                 int queuepos = Integer.parseInt(stripColours(e.chatComponent.getUnformattedText()).replace("Position in queue: ", ""));
+                //This runs when the module is initiated
                 if (lastQueuePos == -1) {
                     lastQueuePos = queuepos;
-                    AdorufuMod.logMsg("\247" + "6Estimated Time: " + "\247" + "r" + "\247" + "6" + "\247" + "lCalculating...");
+                    AdorufuMod.logMsg("Wait patiently for " + milestone + " spots in the queue to pass to ensure (semi)accurate measurement.");
+                    queueMeasurementMilestone = queuepos - milestone;
+                    preMeasurementMilestoneTime = System.nanoTime();
                     return;
                 }
-                if (queuepos == lastQueuePos) {
-                    for (int i = 0; i < queuepos; i++) {
-                        if (i != 0) {
-                            estTime += (10000 / i) / sameCount;
-                            continue;
-                        }
-                        estTime += 10000 / sameCount;
-                    }
-                    sameCount++;
-                    long estTimeWhole = estTime * queuepos;
-                    String tu = convert(estTimeWhole);
-                    if (estTimeWhole > 0) {
-                        AdorufuMod.logMsg("\247" + "6Estimated Time: " + "\247" + "r" + "\247" + "6" + "\247" + "l" + tu);
-                    } else {
-                        AdorufuMod.logMsg("\247" + "6Estimated Time: " + "\247" + "r" + "\247" + "6" + "\247" + "lCalculating...");
-                        estTime = 10000;
-                    }
+                //this should run recursively
+                if (queueMeasurementMilestone >= queuepos) {
+                    AdorufuMod.logMsg("Queue measurement milestone reached. Re-Calculating...");
+                    estTimePerSpot = (System.nanoTime() - preMeasurementMilestoneTime) / milestone;
+                    //Resetting...
+                    preMeasurementMilestoneTime = System.nanoTime();
+                    queueMeasurementMilestone = queuepos - milestone;
+
+                    long estTimeWhole = estTimePerSpot * queuepos;
+                    tu = convert(estTimeWhole);
                     return;
+
                 }
-                if (sameCount >= 2) {
-                    sameCount--;
-                }
-                for (int i = 0; i < queuepos; i++) {
-                    if (i != 0) {
-                        estTime -= (10000 / i) / sameCount;
-                        continue;
-                    }
-                    estTime -= 10000;
-                }
-                long estTimeWhole = estTime * queuepos;
-                String tu = convert(estTimeWhole);
-                if (estTimeWhole > 0) {
-                    AdorufuMod.logMsg("\247" + "6Estimated Time: " + "\247" + "r" + "\247" + "6" + "\247" + "l" + tu);
-                } else {
-                    AdorufuMod.logMsg("\247" + "6Estimated Time: " + "\247" + "r" + "\247" + "6" + "\247" + "lCalculating...");
-                    estTime = 10000;
-                }
-                lastQueuePos = queuepos;
+                AdorufuMod.logMsg("\247" + "6Estimated Time: " + "\247" + "r" + "\247" + "6" + "\247" + "l" + tu);
+
             }
         }
     }
