@@ -16,36 +16,28 @@
  *
  */
 
-package com.sasha.adorufu.mod.feature.impl.hudelements;
+package com.sasha.adorufu.mod.feature.impl;
 
+import com.sasha.adorufu.mod.feature.AbstractAdorufuTogglableFeature;
 import com.sasha.adorufu.mod.feature.AdorufuCategory;
-import com.sasha.adorufu.mod.feature.deprecated.AdorufuModule;
-import com.sasha.adorufu.mod.feature.annotation.ForcefulEnable;
 import com.sasha.adorufu.mod.feature.annotation.FeatureInfo;
-
 
 /**
  * Created by Sasha on 08/08/2018 at 7:51 PM
  **/
-@FeatureInfo(description = "Renders the Adorufu watermark on the HUD")
-@ForcefulEnable
-public class ModuleWatermark extends AdorufuModule  {
-    public ModuleWatermark() {
-        super("Watermark", AdorufuCategory.GUI, true);
+@FeatureInfo(description = "Renders the framerate on the HUD")
+public class FpsRenderableFeature extends AbstractAdorufuTogglableFeature {
+    public FpsRenderableFeature() {
+        super("FPS", AdorufuCategory.GUI);
     }
 
     @Override
     public void onEnable() {
-        
+
     }
 
     @Override
     public void onDisable() {
-
-    }
-
-    @Override
-    public void onTick() {
 
     }
 }

@@ -16,33 +16,19 @@
  *
  */
 
-package com.sasha.adorufu.mod.feature.impl.hudelements;
+package com.sasha.adorufu.mod.feature.impl;
 
+import com.sasha.adorufu.mod.feature.AbstractAdorufuFeature;
 import com.sasha.adorufu.mod.feature.AdorufuCategory;
-import com.sasha.adorufu.mod.feature.deprecated.AdorufuModule;
 import com.sasha.adorufu.mod.feature.annotation.FeatureInfo;
+
 
 /**
  * Created by Sasha on 08/08/2018 at 7:51 PM
  **/
-@FeatureInfo(description = "Renders your equipment's damage on the HUD")
-public class ModuleEquipmentDamage extends AdorufuModule  {
-    public ModuleEquipmentDamage() {
-        super("EquipmentDamage", AdorufuCategory.GUI, true);
-    }
-
-    @Override
-    public void onEnable() {
-
-    }
-
-    @Override
-    public void onDisable() {
-
-    }
-
-    @Override
-    public void onTick() {
-
+@FeatureInfo(description = "Renders the Adorufu watermark on the HUD")
+public class WatermarkRenderableFeature extends AbstractAdorufuFeature {
+    public WatermarkRenderableFeature() {
+        super("Watermark", AdorufuCategory.GUI);
     }
 }

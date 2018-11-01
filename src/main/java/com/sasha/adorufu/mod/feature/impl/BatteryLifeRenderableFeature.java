@@ -16,12 +16,12 @@
  *
  */
 
-package com.sasha.adorufu.mod.feature.impl.hudelements;
+package com.sasha.adorufu.mod.feature.impl;
 
 import com.sasha.adorufu.mod.AdorufuMod;
 import com.sasha.adorufu.mod.events.adorufu.AdorufuBatteryLevelChangedEvent;
+import com.sasha.adorufu.mod.feature.AbstractAdorufuTogglableFeature;
 import com.sasha.adorufu.mod.feature.AdorufuCategory;
-import com.sasha.adorufu.mod.feature.deprecated.AdorufuModule;
 import com.sasha.adorufu.mod.feature.annotation.FeatureInfo;
 import com.sasha.eventsys.SimpleEventHandler;
 import com.sasha.eventsys.SimpleListener;
@@ -31,9 +31,9 @@ import com.sasha.eventsys.SimpleListener;
  * Created by Sasha on 08/08/2018 at 7:51 PM
  **/
 @FeatureInfo(description = "Displays your computer's battery percent.")
-public class ModuleBatteryLife extends AdorufuModule implements SimpleListener {
-    public ModuleBatteryLife() {
-        super("BatteryLife", AdorufuCategory.GUI, true);
+public class BatteryLifeRenderableFeature extends AbstractAdorufuTogglableFeature implements SimpleListener {
+    public BatteryLifeRenderableFeature() {
+        super("BatteryLife", AdorufuCategory.GUI);
     }
 
     @Override
@@ -46,10 +46,6 @@ public class ModuleBatteryLife extends AdorufuModule implements SimpleListener {
 
     }
 
-    @Override
-    public void onTick() {
-
-    }
     @SimpleEventHandler
     public void onBtCnge(AdorufuBatteryLevelChangedEvent e) {
         if (this.isEnabled()) {

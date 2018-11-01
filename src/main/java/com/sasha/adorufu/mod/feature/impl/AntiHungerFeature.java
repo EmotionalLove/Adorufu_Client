@@ -55,7 +55,7 @@ public class AntiHungerFeature extends AbstractAdorufuTogglableFeature implement
     public void onTick() {
         this.setSuffix(this.getFormattableOptionsMap());
         if (!AdorufuMod.minecraft.gameSettings.keyBindAttack.isPressed() || !AdorufuMod.minecraft.gameSettings.keyBindAttack.isKeyDown()) {
-            if (this.getFormattableOptionsMap().get("aac")) {
+            if (this.getOption("aac")) {
                 return;
             }
             AdorufuMod.minecraft.getConnection().sendPacket(new CPacketPlayer(false));
@@ -67,7 +67,7 @@ public class AntiHungerFeature extends AbstractAdorufuTogglableFeature implement
         if (!this.isEnabled()) {
             return;
         }
-        if (AdorufuMod.minecraft.player.motionY > 0.1 && this.getFormattableOptionsMap().get("aac")) {
+        if (AdorufuMod.minecraft.player.motionY > 0.1 && this.getOption("aac")) {
             return;
         }
         if (e.getSendPacket() instanceof CPacketPlayer) {

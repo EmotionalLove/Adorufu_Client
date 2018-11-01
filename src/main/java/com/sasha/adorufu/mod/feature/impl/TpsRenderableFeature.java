@@ -16,19 +16,19 @@
  *
  */
 
-package com.sasha.adorufu.mod.feature.impl.hudelements;
+package com.sasha.adorufu.mod.feature.impl;
 
+import com.sasha.adorufu.mod.feature.AbstractAdorufuTogglableFeature;
 import com.sasha.adorufu.mod.feature.AdorufuCategory;
-import com.sasha.adorufu.mod.feature.deprecated.AdorufuModule;
 import com.sasha.adorufu.mod.feature.annotation.FeatureInfo;
 
 /**
  * Created by Sasha on 08/08/2018 at 7:51 PM
  **/
-@FeatureInfo(description = "Renders the framerate on the HUD")
-public class ModuleFPS extends AdorufuModule  {
-    public ModuleFPS() {
-        super("FPS", AdorufuCategory.GUI, true);
+@FeatureInfo(description = "Renders the tickrate on the HUD")
+public class TpsRenderableFeature extends AbstractAdorufuTogglableFeature {
+    public TpsRenderableFeature() {
+        super("TPS", AdorufuCategory.GUI);
     }
 
     @Override
@@ -38,11 +38,6 @@ public class ModuleFPS extends AdorufuModule  {
 
     @Override
     public void onDisable() {
-
-    }
-
-    @Override
-    public void onTick() {
 
     }
 }

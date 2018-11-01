@@ -22,7 +22,7 @@ package com.sasha.adorufu.mod.gui.hud.renderableobjects;
 import com.sasha.adorufu.mod.AdorufuMod;
 import com.sasha.adorufu.mod.feature.AdorufuCategory;
 import com.sasha.adorufu.mod.feature.deprecated.AdorufuModule;
-import com.sasha.adorufu.mod.feature.impl.FlightFeature;
+import com.sasha.adorufu.mod.feature.impl.FeaturelistRenderableFeature;
 import com.sasha.adorufu.mod.gui.hud.RenderableObject;
 import com.sasha.adorufu.mod.gui.hud.ScreenCornerPos;
 import com.sasha.adorufu.mod.misc.Manager;
@@ -40,7 +40,7 @@ public class RenderableFeatureList extends RenderableObject {
 
     @Override
     public void renderObjectLT(int yyy) {
-        if (Manager.Feature.isFeatureEnabled(/* todo */)) {
+        if (Manager.Feature.isFeatureEnabled(FeaturelistRenderableFeature.class)) {
             int count = 0;
             for (AdorufuModule module : getValidList()) {
                 if (module.getSuffix().equals("")) {
@@ -56,13 +56,13 @@ public class RenderableFeatureList extends RenderableObject {
     }
     @Override
     public void renderObjectLB(int yyy) {
-        if (Manager.Feature.isFeatureEnabled(/* todo */)) {
+        if (Manager.Feature.isFeatureEnabled(FeaturelistRenderableFeature.class)) {
             // TODO
         }
     }
     @Override
     public void renderObjectRT(int yyy) {
-        if (Manager.Feature.isFeatureEnabled(/* todo */)) {
+        if (Manager.Feature.isFeatureEnabled(FeaturelistRenderableFeature.class)) {
             int count = 0;
             for (AdorufuModule module : getValidList()) {
                 if (module.isEnabled() && module.getSuffix().equals("")) {
@@ -78,7 +78,7 @@ public class RenderableFeatureList extends RenderableObject {
     }
     @Override
     public void renderObjectRB(int yyy) {
-        if (Manager.Module.getModule("Hacklist").isEnabled()) {
+        if (Manager.Feature.isFeatureEnabled(FeaturelistRenderableFeature.class)) {
             int count = 0;
             for (AdorufuModule module : getValidList()) {
                 if (module.isEnabled() && module.getSuffix().equals("")) {

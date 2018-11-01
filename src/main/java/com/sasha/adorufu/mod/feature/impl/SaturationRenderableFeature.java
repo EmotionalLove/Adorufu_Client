@@ -16,19 +16,19 @@
  *
  */
 
-package com.sasha.adorufu.mod.feature.impl.hudelements;
+package com.sasha.adorufu.mod.feature.impl;
 
+import com.sasha.adorufu.mod.feature.AbstractAdorufuTogglableFeature;
 import com.sasha.adorufu.mod.feature.AdorufuCategory;
-import com.sasha.adorufu.mod.feature.deprecated.AdorufuModule;
 import com.sasha.adorufu.mod.feature.annotation.FeatureInfo;
 
 /**
  * Created by Sasha on 08/08/2018 at 7:51 PM
  **/
-@FeatureInfo(description = "Renders horse statistics on the HUD")
-public class ModuleHorsestats extends AdorufuModule {
-    public ModuleHorsestats() {
-        super("HorseStats", AdorufuCategory.GUI, true);
+@FeatureInfo(description = "Renders your saturation level on the HUD")
+public class SaturationRenderableFeature extends AbstractAdorufuTogglableFeature {
+    public SaturationRenderableFeature() {
+        super("Saturation", AdorufuCategory.GUI);
     }
 
     @Override
@@ -41,8 +41,4 @@ public class ModuleHorsestats extends AdorufuModule {
 
     }
 
-    @Override
-    public void onTick() {
-
-    }
 }

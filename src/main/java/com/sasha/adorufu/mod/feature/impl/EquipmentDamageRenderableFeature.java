@@ -16,19 +16,19 @@
  *
  */
 
-package com.sasha.adorufu.mod.feature.impl.hudelements;
+package com.sasha.adorufu.mod.feature.impl;
 
+import com.sasha.adorufu.mod.feature.AbstractAdorufuTogglableFeature;
 import com.sasha.adorufu.mod.feature.AdorufuCategory;
-import com.sasha.adorufu.mod.feature.deprecated.AdorufuModule;
 import com.sasha.adorufu.mod.feature.annotation.FeatureInfo;
 
 /**
  * Created by Sasha on 08/08/2018 at 7:51 PM
  **/
-@FeatureInfo(description = "Renders the hack arraylist on the HUD")
-public class ModuleHacklist extends AdorufuModule {
-    public ModuleHacklist() {
-        super("Hacklist", AdorufuCategory.GUI, true);
+@FeatureInfo(description = "Renders your equipment's damage on the HUD")
+public class EquipmentDamageRenderableFeature extends AbstractAdorufuTogglableFeature {
+    public EquipmentDamageRenderableFeature() {
+        super("EquipmentDamage", AdorufuCategory.GUI);
     }
 
     @Override
@@ -41,8 +41,4 @@ public class ModuleHacklist extends AdorufuModule {
 
     }
 
-    @Override
-    public void onTick() {
-
-    }
 }
