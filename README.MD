@@ -50,7 +50,7 @@ If you want to add a feature into Asuna and distribute it among your friends (or
 
 **Creating a plugin** is explained [here](http://sashadev.me/EmotionalLove/AsunaExamplePlugin), but it doesn't go in depth very far, you'll have to refer to the example code to get a grasp on what to do.
 
-**Forking and cloning** is simple. Just create a fork of this repo, and then clone it, either through IntelliJ (I highly recommend this over eclipse), or through command line (`git clone http://github.com/YourUsername/Asuna_Client`). Once you do that, simply do `./gradlew setupDecompWorkspace` (unix) or `gradlew.bat setupDecompWorkspace` (windows), and after that finishes, do `./gradlew genIntellijRuns` (unix) or `gradlew.bat genIntellijRuns` if you're using IntelliJ. To build the jarfiles, do `./gradlew build` (unix) or `gradlew.bat build` (windows). Built jars are located in `projectroot/build/libs/`. From there you can create pull requests or do whatever.
+**Forking, cloning, and compiling** is simple. Just create a fork of this repo, and then clone it, either through IntelliJ (I highly recommend this over eclipse), or through command line (`git clone http://github.com/YourUsername/Asuna_Client`). Once you do that, simply do `./gradlew setupDecompWorkspace` (unix) or `gradlew.bat setupDecompWorkspace` (windows), and after that finishes, do `./gradlew genIntellijRuns` (unix) or `gradlew.bat genIntellijRuns` if you're using IntelliJ. To build the jarfiles, do `./gradlew build` (unix) or `gradlew.bat build` (windows). Built jars are located in `projectroot/build/libs/`. From there you can create pull requests or do whatever.
 
 ### Official Discord
 [https://discord.gg/d3cBVkm](https://discord.gg/d3cBVkm)
